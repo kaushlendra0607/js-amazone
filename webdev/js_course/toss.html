@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coin Flip Game</title>
+</head>
+<body>
+  <button onclick="playGame('heads');
+  displayChoice('heads')
+  // document.querySelector('.display-choice').innerHTML = 'you choose heads'
+  ">Heads</button>
+  <button onclick="playGame('tails');
+  displayChoice('tails')
+  // document.querySelector('.display-choice').innerHTML = 'you choose heads'
+  ">Tails</button>
+  <button onclick="reset();console.log('score was reset');
+  ">Reset Score</button>
+  <p  class="display-choice">  </p>
+
+  <script>
+    let score = JSON.parse(localStorage.getItem('score')) || {
+        wins:0,
+        loss:0
+    }
+
+    function displayChoice(choice){
+      document.querySelector('.display-choice').innerHTML = `you choose ${choice} !`
+      console.log('running');
+      
+    }
+
+    function playGame(guess) {
+      const random = Math.random();
+      const coin = random < 0.5 ? 'heads' : 'tails';
+      const result = guess === coin;
+      result?score.wins++:score.loss++;
+      localStorage.setItem('score',JSON.stringify(score)); 
+
+      console.log(`You guessed: ${guess}`);
+      console.log(`Coin flip is: ${coin}`);
+      console.log(`Result: ${result ? 'Correct!' : 'Wrong!'}`);
+      console.log(`wins:${score.wins},loss:${score.loss}`);
+      
+    }
+    function reset(){
+        localStorage.removeItem('score');
+        score.wins=0;
+        score.loss=0;
+    }
+
+  </script>
+</body>
+</html>
