@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyup</title>
+</head>
+<body>
+    <input type="text" placeholder="Type here" class="js-input" onkeyup="showIt()">
+    <p class="shownHere"></p>
+    <script>
+        function showIt(){
+            document.querySelector('.js-input').addEventListener('keyup',(e)=>{
+                document.querySelector('.shownHere').textContent = `You typed : ${e.target.value}`
+            })
+        }
+    </script>
+</body>
+</html>
