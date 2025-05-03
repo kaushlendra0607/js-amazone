@@ -4,6 +4,7 @@
     <title>calci</title>
   </head>
   <body>
+    <p class="shownHere"> Give input... </p>
     <p>
       <button onclick="
        updateCalculation('1')
@@ -73,6 +74,7 @@
         // Only use eval() for learning purposes.
         calculation = eval(calculation);
         console.log(calculation);
+        showing();
       ">=</button>
 
       <button onclick="
@@ -84,15 +86,21 @@
       <button onclick="
         calculation = '';
         console.log(calculation);
+        showing();
       ">Clear</button>
     </p>
 
     <script>
+
+      function showing(){
+        document.querySelector('.shownHere').innerHTML=`${calculation}`;
+      }
+
       let calculation = '';
       function updateCalculation(input){
         calculation+=input;
         console.log(calculation);
-        
+       showing(); 
       }
     </script>
   </body>
