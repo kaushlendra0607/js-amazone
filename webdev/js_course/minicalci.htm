@@ -2,72 +2,98 @@
 <html>
   <head>
     <title>calci</title>
+    <style>
+      body{
+        background-color: black;
+        color: white;
+      }
+      .lets-style-baby{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: rgb(60, 60, 60);
+        border: none;
+        color: whitesmoke;
+        font-size: large;
+        font-weight: 500;
+      }
+      .operator{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        background-color: orange;
+        color: whitesmoke;
+        font-size: large;
+        font-weight: 500;
+      }
+    </style>
   </head>
   <body>
     <p class="shownHere"> Give input... </p>
     <p>
-      <button onclick="
+      <button class="lets-style-baby" onclick="
        updateCalculation('1')
       ">1</button>
 
-      <button onclick="
+      <button class="lets-style-baby" onclick="
         updateCalculation('2')
       ">2</button>
 
-      <button onclick="
+      <button class="lets-style-baby" onclick="
         updateCalculation('3')
       ">3</button>
 
-      <button onclick="
+      <button class="operator" onclick="
         updateCalculation('+')
       ">+</button>
     </p>
 
     <p>
-      <button onclick="
+      <button class="lets-style-baby" onclick="
         updateCalculation('4')
       ">4</button>
 
-      <button onclick="
+      <button class="lets-style-baby" onclick="
        updateCalculation('5')">5</button>
 
-      <button onclick="
+      <button class="lets-style-baby" onclick="
         updateCalculation('6')
       ">6</button>
 
-      <button onclick="
+      <button class="operator" onclick="
        updateCalculation('-')
       ">-</button>
     </p>
 
     <p>
-      <button onclick="
+      <button class="lets-style-baby" onclick="
        updateCalculation('7')
       ">7</button>
 
-      <button onclick="
+      <button class="lets-style-baby" onclick="
        updateCalculation('8')
       ">8</button>
 
-      <button onclick="
+      <button class="lets-style-baby" onclick="
         updateCalculation('9')
       ">9</button>
 
-      <button onclick="
+      <button  class="operator" onclick="
        updateCalculation('*')
       ">*</button>
     </p>
 
     <p>
-      <button onclick="
+      <button class="lets-style-baby" onclick="
        updateCalculation('0')
       ">0</button>
 
-      <button onclick="
+      <button class="lets-style-baby" onclick="
       updateCalculation('.')
       ">.</button>
 
-      <button onclick="
+      <button class="lets-style-baby" onclick="
         // Note: eval() takes a string and runs it as code.
         // Avoid using eval() in real world projects since
         // it can potentially be given harmful code to run.
@@ -77,17 +103,17 @@
         showing();
       ">=</button>
 
-      <button onclick="
+      <button class="operator" onclick="
        updateCalculation('/')
       ">/</button>
     </p>
 
     <p>
-      <button onclick="
+      <button class="lets-style-baby" onclick="
         calculation = '';
         console.log(calculation);
         showing();
-      ">Clear</button>
+      " style="font-weight: 200; font-size: medium;">Clear</button>
     </p>
 
     <script>
