@@ -42,4 +42,96 @@ function minMax(array){
 
 
 // minMax(arr);
+let arr2 = ["apple","grapes","guava","apple","apple","mango","grapes","mango"];
+function countWordsArray(words) {
+  const wordCount = {};
 
+  for (let word of words) {
+    wordCount[word] = (wordCount[word] || 0) + 1;
+    //above line is alternative of the following
+            //     if (wordCount[word]) {
+            //   wordCount[word]++;
+            // } else {
+            //   wordCount[word] = 1;
+            // }
+  }
+
+  return Object.entries(wordCount); // returns [['apple', 3], ['banana', 2], ...]
+}
+
+
+// console.log(countWordsArray(arr2));
+const arr3 = ["milk","cheese","curd","egg","egg","egg"]
+
+function popEgg(foods){
+    foods.reverse();//this will remove last two eggs remove this to pop first two
+    let eggPopped = [];
+    let two = 0;
+    for(let i=0; i<foods.length; i++){
+        if((foods[i]==='egg') && two<=1){
+            two++;
+            continue
+        }else{
+            eggPopped.push(foods[i]);
+            // two++;
+        }
+    }
+    console.log(eggPopped);
+    console.log(typeof(eggPopped));
+    
+}
+
+// popEgg(arr3);
+
+function fizzbuzz(){
+    for (let i=1; i<=20; i++){
+        if(i%15===0){
+            console.log("FizzBuzz");
+            continue;
+        }
+        if(i%3 === 0){
+            console.log("Fizz");
+            continue;
+        }
+        if(i%5 === 0){
+            console.log("Buzz");
+            continue;
+        }
+        console.log(i);
+        
+
+    }
+}
+
+// fizzbuzz();
+
+function uniqe(array){
+    let wordCount = {};
+    let uniqueArray = [];
+  for (let word of array) {
+    //wordCount[word] = (wordCount[word] || 0) + 1;
+    //above line is alternative of the following
+     if(!(wordCount[word])){
+        wordCount[word]=true;
+        uniqueArray.push(word);
+    }
+  }
+  console.log(uniqueArray);
+  
+}
+
+// uniqe(arr2)
+
+let add =()=>{
+    console.log(2+3);
+}
+add();
+
+function runTwise(funcn){
+    funcn();
+    funcn();
+}
+
+runTwise(add);
+runTwise(()=>{console.log('12A');
+})
