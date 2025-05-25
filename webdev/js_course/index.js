@@ -61,10 +61,10 @@ function countWordsArray(words) {
 
 
 // console.log(countWordsArray(arr2));
-const arr3 = ["milk","cheese","curd","egg","egg","egg"]
+const arr3 = ["milk",'egg',"cheese",'egg','egg',"curd","egg"]
 
 function popEgg(foods){
-    foods.reverse();//this will remove last two eggs remove this to pop first two
+    // foods.reverse();//this will remove last two eggs remove this to pop first two
     let eggPopped = [];
     let two = 0;
     for(let i=0; i<foods.length; i++){
@@ -77,7 +77,7 @@ function popEgg(foods){
         }
     }
     console.log(eggPopped);
-    console.log(typeof(eggPopped));
+    // console.log(typeof(eggPopped));
     
 }
 
@@ -125,13 +125,35 @@ function uniqe(array){
 let add =()=>{
     console.log(2+3);
 }
-add();
+// add();
 
 function runTwise(funcn){
     funcn();
     funcn();
 }
 
-runTwise(add);
-runTwise(()=>{console.log('12A');
-})
+// runTwise(add);
+// runTwise(()=>{console.log('12A');
+// })
+
+// crown();
+
+function crown  (){
+    console.log("harshit")
+}
+
+let arr4 = [1,-2,9,+6,-4];
+function addNum(array,num){
+    const arr5 = array.map(n=>n+num);
+    console.log(arr5);
+}
+
+// addNum(arr4,2);
+
+function popEggFilter(array){
+    let two = 0;
+    return (array.filter(name =>{ 
+        return name === 'egg'?(two++<2?false:true):true;}
+    ));
+}
+console.log(popEggFilter(arr3));
