@@ -33,8 +33,8 @@ cart.forEach((cartitem) => {
   const today = dayjs();
   const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
   const dayString = deliveryDate.format('dddd, MMMM D');
-  const priceString = deliveryOption.priceCents === 0 ? 'FREE' : `$${formatCurrency(deliveryOption.priceCents)} -`
-  const isChecked = deliveryOption.id === cartitem. deliveryOptionid;
+  // const priceString = deliveryOption.priceCents === 0 ? 'FREE' : `$${formatCurrency(deliveryOption.priceCents)} -`
+  // const isChecked = deliveryOption.id === cartitem. deliveryOptionid;
   cartsummaryHTML += `
      <div class="cart-item-container js-cart-item-container-${matchingproduct.id}">
             <div class="delivery-date">
