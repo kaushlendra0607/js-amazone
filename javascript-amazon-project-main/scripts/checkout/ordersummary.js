@@ -19,7 +19,7 @@ export function renderOrderSummary(){
     const productId = cartitem.productId;
     const matchingproduct = getProduct(productId);
 
-    console.log(matchingproduct);
+    // console.log(matchingproduct);
     const deliveryOptionId = cartitem.deliveryOptionId;
     let deliveryOption=getDeliveryOption(deliveryOptionId);
 
@@ -91,7 +91,7 @@ export function renderOrderSummary(){
       </div>
       </div>
       `
-      console.log(dayString);
+      // console.log(dayString);
       
     })
     return html;
