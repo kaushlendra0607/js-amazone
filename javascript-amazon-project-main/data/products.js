@@ -52,7 +52,18 @@ class Clothing extends Product{
     }
 }
   
+/*
+function logThis(){
+  console.log(this);
   
+}
+logThis();//this is undefined upto here
+logThis.call('hello');//the value in call will be assigned to this
+//this used in arrow function have the value this had outside the arrow function*/
+ /* 
+const date = new Date();//built in class
+console.log(date.toLocaleString());
+*/
 
 export const products = [
   {
