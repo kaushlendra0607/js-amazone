@@ -1,57 +1,57 @@
 import { formatCurrency } from "../scripts/utils/money.js";
 
-export function getProduct(productId){
-   let matchingproduct;
+export function getProduct(productId) {
+  let matchingproduct;
 
-    products.forEach((product) => {
-      if (product.id === productId) {
-        matchingproduct = product;
-      }
-    });
-    return matchingproduct;
+  products.forEach((product) => {
+    if (product.id === productId) {
+      matchingproduct = product;
+    }
+  });
+  return matchingproduct;
 }
 
-class Product{
+class Product {
   id;
   image;
   name;
   rating;
   priceCents;
-  constructor(productDetails){
-    this.id=productDetails.id;
+  constructor(productDetails) {
+    this.id = productDetails.id;
     this.image = productDetails.image;
-    this.name= productDetails.name;
-    this.rating= productDetails.rating;
-    this.priceCents= productDetails.priceCents;
+    this.name = productDetails.name;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
   }
 
-  getStarsUrl(){
+  getStarsUrl() {
     return `images/ratings/rating-${this.rating.stars * 10}.png`;
   }
 
-  getPrice(){
-     return `$${formatCurrency(this.priceCents)}`;
+  getPrice() {
+    return `$${formatCurrency(this.priceCents)}`;
   }
 
-  extraInfoHTML(){
+  extraInfoHTML() {
     return '';
   }
 }
 
-class Clothing extends Product{
-    sizeChartLink;
-    constructor(productDetails){
-        super(productDetails);
-        this.sizeChartLink = productDetails.sizeChartLink;
-    }
+class Clothing extends Product {
+  sizeChartLink;
+  constructor(productDetails) {
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
 
-    extraInfoHTML(){
-      return `
+  extraInfoHTML() {
+    return `
         <a href="${this.sizeChartLink}" target="_blank">Size Chart</a>
       `
-    }
+  }
 }
-  
+
 /*
 function logThis(){
   console.log(this);
@@ -60,11 +60,33 @@ function logThis(){
 logThis();//this is undefined upto here
 logThis.call('hello');//the value in call will be assigned to this
 //this used in arrow function have the value this had outside the arrow function*/
- /* 
+/* 
 const date = new Date();//built in class
 console.log(date.toLocaleString());
 */
 
+export let products = [];
+export function loadProducts(fun) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    // console.log(xhr.response);
+    products = JSON.parse(xhr.response).map((productDetails) => {
+      if (productDetails.type === 'clothing') {
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });
+    console.log(products);
+    fun();
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/products');
+  xhr.send();
+}
+// loadProducts();
+
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -730,6 +752,7 @@ export const products = [
   }
   return new Product(productDetails);
 });
+*/
 
 
 /* 
@@ -758,9 +781,4 @@ const products = [
   }
   return new Product(productDetails);
 });
-
-
-
-
-
 */
