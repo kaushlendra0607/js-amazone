@@ -13,9 +13,7 @@
             opacity: .7;
     }
     .join{
-        transition: color .25s, 
-        background-color .25s;
-        ;
+        transition: color .2s , background-color .2s;
         background-color: #fff;
         border-color: rgb(42, 42, 200);
         border-style: solid;
@@ -52,6 +50,7 @@
     }
     
     #amazon{
+        margin: 10px;
         height: 35px;
         border: none;
         background-color: rgb(255, 255, 20);
