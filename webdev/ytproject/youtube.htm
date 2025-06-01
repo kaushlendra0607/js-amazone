@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="video.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="sidebar.css">
     <style>
        
     </style>
@@ -24,16 +25,24 @@
             <input class="search-bar" type="text" placeholder="Search">
             <button class="search-button">
                 <img class="search-icon" src="images/icons/search.svg" alt="search">
+                <div class="tooltip">Search</div>
             </button>
             <button class="voice-search-button">
                 <img class="voice-search-icon" src="images/icons/voice-search-icon.svg" alt="voice-search">
+                <div class="tooltip">Search with your voice.</div>
             </button>
         </div>
 
         <div class="right_section" >
-           <img class="upload-icon" src="images/icons/upload.svg" alt="upload">
+           <div class="upload-icon-container">
+            <img class="upload-icon" src="images/icons/upload.svg" alt="upload">
+             <div class="tooltip">Create</div>
+           </div>
             <img class="youtube-apps-icon" src="images/icons/youtube-apps.svg" alt="youtube-apps">
-            <img class="notifications-icon" src="images/icons/notifications.svg" alt="notifications">
+           <div class="notifications-icon-container">
+                <img class="notifications-icon" src="images/icons/notifications.svg" alt="notifications">
+                <div class="notifications-count">3</div>
+            </div>
             <img class="current-user-picture" src="images/channel-pictures/my-channel.jpeg" alt="my-channel">
         </div>
 
@@ -41,8 +50,33 @@
 
 
     <div class="sidebar">
-        sidebar
+       <div class="sidebar-link">
+        <img src="images/icons/home.svg" alt="home">
+        <div>Home</div>
+       </div>
+       <div class="sidebar-link">
+        <img src="images/icons/explore.svg" alt="explore">
+        <div>Explore</div>
+       </div>
+       <div class="sidebar-link">
+        <img src="images/icons/subscriptions.svg" alt="subscriptions">
+        <div>Subscription</div>
+       </div>
+       <div class="sidebar-link">
+        <img src="images/icons/originals.svg" alt="originals">
+        <div>Originals</div>
+       </div>
+       <div class="sidebar-link">
+        <img src="images/icons/youtube-music.svg" alt="youtube-music">
+        <div>YouTube Music</div>
+       </div>
+       <div class="sidebar-link">
+        <img src="images/icons/library.svg" alt="library">
+        <div>Library</div>
+       </div>
     </div>
+
+
         <!-- now it is video grid. -->
 
 
@@ -52,6 +86,9 @@
             <div class="thumbnail-row">
                 <img src="images/thumbnails/thumbnail-1sundar.webp" 
                 alt="thumbnail-1sundar" class="thumbnail">
+                <div class="video-time">
+                    14:20
+                </div>
             </div>
             <div class="video-info-grid">
                 <div class="channel-picture">
@@ -79,6 +116,9 @@
             <div class="thumbnail-row">
                 <img src="images/thumbnails/thumbnail-2.webp" 
                 alt="thumbnail-1sundar" class="thumbnail">
+                 <div class="video-time">
+                    8:22
+                </div>
             </div>
             <div class="video-info-grid">
                 <div class="channel-picture">
@@ -99,11 +139,16 @@
 
             </div>
         </div>
+
+        <!-- another video-preview -->
  
          <div class="video-preview">
             <div class="thumbnail-row">
                 <img src="images/thumbnails/thumbnail-3.webp" 
                 alt="thumbnail-1sundar" class="thumbnail">
+                 <div class="video-time">
+                    9:13
+                </div>
             </div>
             <div class="video-info-grid">
                 <div class="channel-picture">
@@ -131,6 +176,9 @@
             <div class="thumbnail-row">
                 <img src="images/thumbnails/thumbnail-4.webp" 
                 alt="thumbnail-1sundar" class="thumbnail">
+                 <div class="video-time">
+                    22:09
+                </div>
             </div>
             <div class="video-info-grid">
                 <div class="channel-picture">
@@ -152,11 +200,15 @@
             </div>
         </div>
 
+         <!-- another video-preview -->
 
          <div class="video-preview">
             <div class="thumbnail-row">
                 <img src="images/thumbnails/thumbnail-5.webp" 
                 alt="thumbnail-1sundar" class="thumbnail">
+                 <div class="video-time">
+                   11:17
+                </div>
             </div>
             <div class="video-info-grid">
                 <div class="channel-picture">
@@ -184,6 +236,9 @@
             <div class="thumbnail-row">
                 <img src="images/thumbnails/thumbnail-6.webp" 
                 alt="thumbnail-1sundar" class="thumbnail">
+                 <div class="video-time">
+                   19:59
+                </div>
             </div>
             <div class="video-info-grid">
                 <div class="channel-picture">
