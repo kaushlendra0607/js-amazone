@@ -5,102 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube.com Clone</title>
-    <link rel="stylesheet" href="you.css">
+    <link rel="stylesheet" href="video.css">
     <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="general.css">
     <style>
-        p{
-           margin-top: 0;
-           margin-bottom: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-
-      .video-info-grid{
-        display: grid;
-        grid-template-columns: 50px 1fr;
-
-      }
-        
-        .channel-picture{
-           
-        }
-        .video-info{
-            
-        }
-        .profile-picture{
-            width: 70%;
-            border-radius: 50%;
-        }
-        .thumbnail{
-            width: 100%;
-        }
-        .thumbnail-row{
-            margin-bottom: 10px;
-        }
-        .video-description{
-            vertical-align: top;
-        }
-        .video-title{
-            margin-top: 0;
-            font-size: 14px;
-            font-weight:600;
-            line-height: 20px;
-            margin-bottom: 10px;
-        }
-        .video-author{
-            font-size: 12px;
-            margin-bottom: 4px;
-            color: rgb(80, 80, 80);
-        }
-        .video-stats{
-            font-size: 12px;
-            color: rgb(80, 80, 80);
-        }
-        .video-grid{
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            column-gap: 10px;
-            row-gap: 30px;
-        }
+       
     </style>
 </head>
 
 <body>
 
     <div class="header">
-        <div class="left_section">
-            <img src="icons/menu.png" class="hamburger_menu">
-            <img src="icons/badge.png" class="yticon">
+        <div class="left_section" >
+            <img class="hamburger-menu" src="images/icons/hamburger-menu.svg" alt="menu">
+            <img class="youtube-logo" src="images/icons/youtube-logo.svg" alt="">
         </div>
-        <div class="middle_section">
-            <input class="searchbar" type="text" placeholder="Search">
-            <div class="search_btn">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" viewBox="0 0 24 24" width="15"
-                    focusable="false" aria-hidden="true"
-                    style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
-                    <path clip-rule="evenodd"
-                        d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z"
-                        fill-rule="evenodd"></path>
-                </svg>
-            </div>
-            <div style="background:#282828; border-radius: 50%;">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="16" fill="white"
-                    focusable="false" aria-hidden="true"
-                    style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
-                    <path
-                        d="M12 3c-1.66 0-3 1.37-3 3.07v5.86c0 1.7 1.34 3.07 3 3.07s3-1.37 3-3.07V6.07C15 4.37 13.66 3 12 3zm6.5 9h-1c0 3.03-2.47 5.5-5.5 5.5S6.5 15.03 6.5 12h-1c0 3.24 2.39 5.93 5.5 6.41V21h2v-2.59c3.11-.48 5.5-3.17 5.5-6.41z">
-                    </path>
-                </svg>
-            </div>
+        <div class="middle_section" >
+            <input class="search-bar" type="text" placeholder="Search">
+            <button class="search-button">
+                <img class="search-icon" src="images/icons/search.svg" alt="search">
+            </button>
+            <button class="voice-search-button">
+                <img class="voice-search-icon" src="images/icons/voice-search-icon.svg" alt="voice-search">
+            </button>
         </div>
 
-        <div class="right_section" style="font-size: 14px;">
-            rightsection
-
+        <div class="right_section" >
+           <img class="upload-icon" src="images/icons/upload.svg" alt="upload">
+            <img class="youtube-apps-icon" src="images/icons/youtube-apps.svg" alt="youtube-apps">
+            <img class="notifications-icon" src="images/icons/notifications.svg" alt="notifications">
+            <img class="current-user-picture" src="images/channel-pictures/my-channel.jpeg" alt="my-channel">
         </div>
 
     </div>
 
 
+    <div class="sidebar">
+        sidebar
+    </div>
         <!-- now it is video grid. -->
 
 
