@@ -4,7 +4,7 @@
            }
 
 body{
-    margin: 0;
+    margin: 0;/* avoid using viewport width*/
     padding-top: 6.8vw;
     padding-left: 8.5vw;
     padding-right: 1.8vw;

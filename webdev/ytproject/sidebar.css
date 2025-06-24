@@ -4,20 +4,19 @@
     top: 52px;
     bottom: 0;
     background-color: #fff;
-    width: 6.8vw;
+    width:fit-content;
     z-index: 105;
     padding-top: 3px;
-    cursor: pointer;
 
-/* 
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center; */
+    align-items: center;  */
 } 
 
 .sidebar-link{
     /* background-color: red; */
+    cursor: pointer;
    height: 76px;
    display: flex;
    justify-content: center;
