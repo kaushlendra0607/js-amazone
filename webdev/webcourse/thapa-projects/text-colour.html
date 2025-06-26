@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Transition</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #191825;
+        }
+        h1{
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 96px;
+            text-shadow: -1px 2px 3px rgba(236,247,72,.2);
+            position: relative;
+        }
+        h1::before{
+            content: "Subscribe...";
+            color: #e9b824;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            border-right: #e9b824 2px solid;
+            overflow: hidden;
+            animation: textreveal 2s linear infinite alternate;
+        }
+
+        @keyframes textreveal{
+            0%{
+                width:0%;
+            }
+            25%{
+                width: 25%;
+            }
+            50%{
+                width: 50%;
+            }
+            75%{
+                width: 75%;
+            }
+            100%{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Subscribe...
+    </h1>
+</body>
+</html>
