@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newton Cradle</title>
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #191825;
+        }
+        .cradle{
+            margin-top: 6rem;
+            width: 50rem;
+            height: 50rem;
+            border-top: 1rem solid #865dff;
+            border-radius: .5rem;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+
+        }
+        div{
+            width: .5rem;
+            height: 15rem;
+            background-color:#865dff ;
+            position: relative;
+            margin-top: -4px;
+        }
+        .cradle div::before{
+            content: "";
+            position: absolute;
+            /* bottom: 0; */
+            top: 90%;
+            left: -2.5rem;
+            width: 5.5rem;
+            aspect-ratio: 1;
+            border-radius: 50%;
+             background-color:#865dff ;
+        }
+        .cradle div:first-child{
+            animation: left-swing 2s linear infinite ;
+            transform-origin: top left;
+        }
+         .cradle div:last-child{
+            animation: right-swing 2s linear infinite ;
+            transform-origin: top left;
+        }
+        @keyframes left-swing{
+            0%{
+                rotate: 0deg;
+            }
+            25%{
+                rotate:0deg;
+            }
+            50%{
+                rotate: 30deg;
+            }
+            75%{
+                rotate: 0deg;
+            }
+            100%{
+                rotate: 0deg;
+            }
+        }
+         @keyframes right-swing{
+            0%{
+                rotate: -30deg;
+            }
+            25%{
+                rotate:0deg;
+            }
+            50%{
+                rotate: 0deg;
+            }
+            75%{
+                rotate: 0deg;
+            }
+            100%{
+                rotate: -30deg;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cradle">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>
