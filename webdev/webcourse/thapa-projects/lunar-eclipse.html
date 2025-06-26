@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+        }
+        body{
+            background-color: #ffe4d6;
+            width: 100vw;
+            height: 100vh;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+        }
+        .universe{
+            width: 40vw;
+            aspect-ratio: 1;
+            background-color: #ffbb5c;
+             display: flex;
+           align-items: center;
+           justify-content: center;
+           border-radius: 12px;
+           animation: skychange 10s linear infinite;
+        }
+        @keyframes skychange{
+            0%{
+                background-color: #ffbb5c;
+            }
+             25%{
+                background-color: #9d6414;
+            }
+             50%{
+                background-color: #000;
+            }
+             75%{
+                background-color:#9d6414;
+            }
+             100%{
+                background-color: #ffbb5c;
+            }
+        }
+        .sun{
+            width: 18vw;
+            aspect-ratio: 1;
+            background-color: #e25e3e;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            &::after{
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: inherit;
+                width: inherit;
+                aspect-ratio: inherit;
+                background-color: #000;
+                animation: moonwalk 10s ease-in-out infinite;
+            }
+            
+        }
+        @keyframes moonwalk{
+            0%{
+                translate: 100%;
+                scale: 1;
+            }
+            50%{
+                translate: 0%;
+                scale: .95;
+                box-shadow: rgba(210, 126, 23, 0.6) 0px 7px 29px 0px;
+            }
+            100%{
+                translate: -100%;
+                scale: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="universe">
+        <div class="sun"></div>
+    </div>
+</body>
+</html>
