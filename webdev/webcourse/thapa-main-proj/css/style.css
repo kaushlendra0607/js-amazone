@@ -11,9 +11,20 @@ html, body {
   overflow-x: hidden;
 }
 
+body{
+    overflow-y: scroll;
+    scroll-snap-type: y proximity;
+}
 
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+    height: 100%;
+}
+section {
+    scroll-snap-align: start;
+    /* height: 100vh; */
 }
 
 h1,
@@ -787,6 +798,10 @@ textarea:focus-visible {
 
 
 @media(max-width:768px) {
+/* 
+    *:hover {
+        all: unset;
+    } */
 
     .section-hero .grid .hero-heading{
         font-size: 3.2rem;
@@ -967,4 +982,10 @@ textarea:focus-visible {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  *:hover {
+    all: unset;
+  }
 }
