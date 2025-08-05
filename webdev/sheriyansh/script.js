@@ -1,8 +1,39 @@
-const scroll = new LocomotiveScroll({
-    el: document.querySelector('#main'),
-    smooth: true
-});
+// const scroll = new LocomotiveScroll({
+//   el: document.querySelector('[data-scroll-container]'),
+//   smooth: true,
+//   multiplier: 1.2, // Adjusts mouse wheel scroll speed
+//   touchMultiplier: 2.5, // Adjusts trackpad/touch scroll speed
+//   smartphone: {
+//     smooth: true,
+//     multiplier: 1.5,
+//     touchMultiplier: 2.0,
+//   },
+//   tablet: {
+//     smooth: true,
+//     multiplier: 1.5,
+//     touchMultiplier: 2.0,
+//   }
+// });
 
+// Initialize Lenis
+// const lenis = new Lenis({
+//   autoRaf: true,
+// });
+
+// // Listen for the scroll event and log the event data
+// lenis.on('scroll', (e) => {
+// //   console.log(e);
+// });
+// Initialize Lenis
+const lenis = new Lenis();
+
+// Use requestAnimationFrame to continuously update the scroll
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
 function firstPageAnim(){
    let tl = gsap.timeline();
     tl.from("#nav",{
@@ -49,7 +80,7 @@ function circleChaptaKaro() {
     timeout = setTimeout(function () {
       document.querySelector(
         "#minicircle"
-      ).style.transform = `translate(${dets.clientX-5}px, ${dets.clientY-5}px) scale(1, 1)`;
+      ).style.transform = `translate(${dets.clientX-5}px, ${dets.clientY-5+window.scrollY}px) scale(1, 1)`;
     }, 100);
   });
 }
@@ -57,7 +88,7 @@ function circleChaptaKaro() {
 function circlemousefollower(xscale,yscale){
     window.addEventListener("mousemove",function(dets){
         // console.log(dets.clientX,dets.clientY);
-        document.querySelector("#minicircle").style.transform=`translate(${dets.clientX}px,${dets.clientY}px) scale(${xscale},${yscale})`;
+        document.querySelector("#minicircle").style.transform=`translate(${dets.clientX}px,${dets.clientY+window.scrollY}px) scale(${xscale},${yscale})`;
         
     })
 }
@@ -144,13 +175,51 @@ document.querySelectorAll(".elem").forEach(function(elem){
     })
 })
 
+let mouseX = 0, mouseY = 0;
+let currentX = 0, currentY = 0;
+let xscale = 1, yscale = 1;
+let xprev = 0, yprev = 0;
+
+const minicircle = document.querySelector("#minicircle");
+
+function lerp(start, end, factor) {
+    return start * (1 - factor) + end * factor;
+}
+
+function animateCircle() {
+    currentX = lerp(currentX, mouseX, 0.15);
+    currentY = lerp(currentY, mouseY, 0.15);
+
+    const dx = mouseX - xprev;
+    const dy = mouseY - yprev;
+
+    xscale = gsap.utils.clamp(0.8, 1.2, dx * 0.1);
+    yscale = gsap.utils.clamp(0.8, 1.2, dy * 0.1);
+
+    xprev = mouseX;
+    yprev = mouseY;
+
+    minicircle.style.transform = `translate(${currentX-5}px, ${currentY-5}px) scale(${xscale}, ${yscale})`;
+
+    requestAnimationFrame(animateCircle);
+}
+
+window.addEventListener("mousemove", function (e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY + window.scrollY;
+});
+
+// animateCircle(); // kickstart the animation loop
+
+
 window.addEventListener("load", function () {
-    const scroll = new LocomotiveScroll({
-        el: document.querySelector('#main'),
-        smooth: true
-    });
+    // const scroll = new LocomotiveScroll({
+    //     el: document.querySelector('#main'),
+    //     smooth: true
+    // });
 
     firstPageAnim();
-    circleChaptaKaro();
+    animateCircle();
+    // circleChaptaKaro();
     // circlemousefollower();
 });
