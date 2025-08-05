@@ -8,8 +8,8 @@
 
 #minicircle{
     transition:all cubic-bezier(0.19, 1, 0.22, 1) .2s;
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     z-index: 9999;
     position: absolute;
@@ -243,3 +243,38 @@ html{
     font-weight: 600;
     text-decoration: none;
 }
+
+/* creating the hover effect of cricle */
+
+/* .circlehover {
+    position: relative;
+    display: inline-block;
+    color: white;
+    transition:color cubic-bezier(0.19, 1, 0.22, 1) .2s;
+}
+
+   .circlehover::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    top: var(--circle-top, 50%);
+    left: var(--circle-left, 50%);
+    opacity: 0;
+    z-index: -1;
+   /* transition:opacity cubic-bezier(0.19, 1, 0.22, 1) .2s; 
+
+
+}
+
+.circlehover.hovered {
+    color: red;
+}
+
+.circlehover.hovered::before {
+    opacity: 1;
+} */

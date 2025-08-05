@@ -187,19 +187,43 @@ function lerp(start, end, factor) {
 }
 
 function animateCircle() {
-    currentX = lerp(currentX, mouseX, 0.15);
-    currentY = lerp(currentY, mouseY, 0.15);
+    currentX = lerp(currentX, mouseX, 0.25);
+    currentY = lerp(currentY, mouseY, 0.25);
 
     const dx = mouseX - xprev;
     const dy = mouseY - yprev;
 
-    xscale = gsap.utils.clamp(0.8, 1.2, dx * 0.1);
-    yscale = gsap.utils.clamp(0.8, 1.2, dy * 0.1);
+    xscale = gsap.utils.clamp(0.8, 1.2, dx * 0.2);
+    yscale = gsap.utils.clamp(0.8, 1.2, dy * 0.2);
 
     xprev = mouseX;
     yprev = mouseY;
 
-    minicircle.style.transform = `translate(${currentX-5}px, ${currentY-5}px) scale(${xscale}, ${yscale})`;
+    minicircle.style.transform = `translate(${currentX-9}px, ${currentY-9}px) scale(${xscale}, ${yscale})`;
+//     document.querySelectorAll(".circlehover").forEach(el => {
+//     const rect = el.getBoundingClientRect();
+//     const isHovered =
+//         mouseX > rect.left &&
+//         mouseX < rect.right &&
+//         mouseY - window.scrollY > rect.top &&
+//         mouseY - window.scrollY < rect.bottom;
+
+//     if (isHovered) {
+//         el.classList.add("hovered");
+//         const before = el.querySelector("::before");
+//         const localX = mouseX - rect.left;
+//         const localY = (mouseY - window.scrollY) - rect.top;
+
+//         el.style.setProperty("--circle-x", `${localX}px`);
+//         el.style.setProperty("--circle-y", `${localY}px`);
+
+//         // move the pseudo-element using CSS vars
+//         el.style.setProperty("--circle-left", `${localX}px`);
+//         el.style.setProperty("--circle-top", `${localY}px`);
+//     } else {
+//         el.classList.remove("hovered");
+//     }
+// });
 
     requestAnimationFrame(animateCircle);
 }
