@@ -6,9 +6,11 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="loco.css">
 </head>
 <body>
-    <div id="main">
+    <div id="minicircle"></div>
+    <div id="main" data-scroll-container>
         <div id="hero">
             <div id="nav">
                 <a href="#">Cynthia Ugvu</a>
@@ -17,15 +19,27 @@
                 </h3>
             </div>
             <div id="heading">
-                <h1 style="color: #fff;">PRODUCT</h1>
+                <div class="bounding">
+                    <h1  class="boundingelem">PRODUCT</h1>
+                </div>
                 <div class="blocktext">
-                    <h1 id="secondh1" style="color: #fff;">DESINGNER</h1>
-                    <h5 style="color: #fff;">based in toronto</h5>
+                    <div class="bounding">
+                        <h1 id="secondh1" style="color: #fff;" class="boundingelem">DESINGNER</h1>
+                    </div>
+                    
+                    <div class="bounding">
+                        <h5 style="color: #fff;" class="boundingelem">based in toronto</h5>
+                    </div>
+                    
                 </div>
             </div>
             <div id="chhotiheadings">
-                <h5>available for freelance</h5>
-                <h5>work from may 21'st</h5>
+                <div class="bounding">
+                    <h5 class="boundingelem">available for freelance</h5>
+                </div>
+                <div class="bounding">
+                    <h5 class="boundingelem">work from may 21'st</h5>
+                </div>
             </div>
             <div id="herofooter">
                 <a href="#">previously worked at yml<i class="ri-arrow-right-up-line"></i></a>
@@ -86,5 +100,8 @@
             </div>
          </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
