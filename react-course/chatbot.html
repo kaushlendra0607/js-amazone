@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+    <style>
+        
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        function ChatInput({chatMessages, setChatMessages}){//now we can access this state
+            const [inputText, setInputText] = React.useState('');
+            function saveInputText(event){//event is an object which contains the properties of       onchange element.
+                setInputText(event.target.value);
+            }
+
+            function sendMessage(){
+                const newChatMessages =[
+                ...chatMessages,//syntax of spread oprtr
+                {//this the new data to be updated
+                    message:inputText,
+                    sender:"user",
+                    id:crypto.randomUUID()
+                }
+               ]
+                 setChatMessages(newChatMessages);
+              
+                const response = Chatbot.getResponse(inputText);
+                setChatMessages([
+                    ...newChatMessages,//syntax of spread oprtr
+                    {//this the new data to be updated
+                        message:response,
+                        sender:"robot",
+                        id:crypto.randomUUID()
+                    }
+               ]);
+              
+                setInputText('');
+                
+            }
+
+            return(
+                <>
+                    <input
+                     type="text"
+                     placeholder="Send message to Chatbot" 
+                     size="30" 
+                     onChange={saveInputText}
+                     value={inputText}
+                      />
+                    <button onClick={sendMessage} className="send-button">Send</button>
+                </>
+            );
+        }
+        function ChatMessage({message,sender}){
+            //const message = props.message;
+            //const sender=props.sender;
+            //const {message,sender}=props;
+            /*
+            if(sender === "robot"){
+                return (
+                    <div>
+                        <img src="robot.png" alt="robot" width="50" />
+                        {message}
+                    </div>
+                );
+            }*/
+            return (
+                <div>
+                    {sender==="robot" && <img src="robot.png" alt="robot" width="50" />}
+                    {message}
+                    { sender === "user" && <img src="user.png" alt="user" width="50" />}
+                </div>
+            );
+        }
+
+        function ChatMessages({chatMessages}){//using state will change the html as well when the data changes.
+            // const chatMessages = array[0];//array[0] gives the current data from state.
+            // const setChatMessages = array[1];//this is actually a function and has to be treated xactly like a funcn. this updates the data in future.
+            // const [ chatMessages, setChatMessages] = array;//shortcut for above two lines(order matters of chatMessages and setChatMessages)on useState line shortest method is used for destructuring.
+            
+           /* function sendMessage(){
+                chatMessages.push({
+                    message:"test",
+                    sender:"user",
+                    id:crypto.randomUUID()
+                });
+                console.log(chatMessages);
+                the above method is modifying the data directly.Not good practice 
+                we shuld modify the copy of  the data.Use useState...
+                 }*/
+
+            return(
+                <>
+                {
+                    chatMessages.map((chatMessage)=>{
+                        return (
+                            <ChatMessage
+                                message={chatMessage.message}
+                                sender={chatMessage.sender}
+                                key = {chatMessage.id}
+                            />
+                        );
+                    })
+                }
+                </>
+            );
+        }
+        
+        function App(){
+            const [chatMessages, setChatMessages] = React.useState(
+                [
+                {
+                    message:" hello sir..",
+                    sender:"user",
+                    id:"id1"
+                },{
+                    message:"Hello! How can I help you?",
+                    sender:"robot",
+                    id:"id2"
+                },{
+                    message:"flip a damn coin",
+                    sender:"user",
+                    id:"id3"
+                },{
+                    message:"Sure! You got heads",
+                    sender:"robot",
+                    id:"id4"
+                }
+            ]
+            );
+                //we removed above code from ChatMessages funcn to its parent component i.e. App this makes the availability of state to all the child component of App nad this process is called lifting the state up
+            return(
+                <>{/*Here we now add some props (attributes) to our created element ChatInput */}
+                    <ChatInput
+                        chatMessages = {chatMessages}
+                        setChatMessages = {setChatMessages}
+                    />
+                    <ChatMessages chatMessages={chatMessages}/>{/*we generally use same name*/}
+                </>
+            );
+        }
+    
+       const container = document.querySelector('.js-container');
+       ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>
