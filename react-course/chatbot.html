@@ -254,7 +254,7 @@
                 <div className="app-container">{/*Here we now add some props (attributes) to our created element ChatInput */}
                     
                     <ChatMessages chatMessages={chatMessages} />
-                    {/*we generally use same name as above*/}
+                    {/*we generally use same name as above.<></>this oprtr is generally termed as fragment, it desnt adds more divs in the html*/}
                     <ChatInput //here we created our own html element. One way to do this is use <></> and run the funcn inside using {} but this is the shorter way
                         chatMessages={chatMessages}//here we created our own attributes
                         setChatMessages={setChatMessages}//these attributes are passed in an object to the ChatInput funcn

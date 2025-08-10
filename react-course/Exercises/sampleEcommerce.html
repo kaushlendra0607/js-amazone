@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sample eCommerce</title>
+    <style>
+        .make-flex{
+            display: flex;
+            justify-content: space-evenly;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        function ProductDetails({name,price,discountPrice}){
+            return(
+                <div className="make-flex">
+                    <div>
+                        <div>{name[0]}</div>
+                        <div>{discountPrice[0]===0 ? <>Price:${price[0].toFixed(2)}</>:<del>Price:${price[0].toFixed(2)}</del>}</div>
+                        <div>{discountPrice[0]===0 ? '':<>Discount Price:${discountPrice[0]}</>}</div>
+                        <button>Add to Cart</button>
+                    </div>
+                   <div>
+                         <div>{name[1]}</div>
+                        <div>Price:${price[1].toFixed(2)}</div>
+                        <button>Add to Cart</button>
+                   </div>
+                    <div>
+                        <div>{name[2]}</div>
+                        <div>Price:${price[2].toFixed(2)}</div>
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+            );
+        }
+        function App(){
+            return(
+                <>
+                    <ProductDetails 
+                        name={['Cotton Socks','Tennis Ball','Plain T-Shirt']}
+                        price={[10.90,6.00,7.99]}
+                        discountPrice={[5.45,0,0]}
+                    />
+                </>
+            );
+        }
+       const container = document.querySelector('.js-container');
+       ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>
