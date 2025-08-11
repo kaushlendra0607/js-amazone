@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        // function TimesClicked({count, setCount}){
+        //     function printing(){
+        //         setCount(count+1);
+        //         console.log('Clicked');
+        //     }
+        //     return(
+        //         <>
+        //             {count <= 1 ? <button onClick={printing}>Clicked {count} time.</button> : <button onClick={printing}>Clicked {count} times.</button>}
+        //             {count <= 1 ? <button onClick={printing}>Clicked {count} time.</button> : <button onClick={printing}>Clicked {count} times.</button>}
+        //         </>
+        //     );
+        // }
+        // function Reset({setCount}){
+        //     function rsestCount(){
+        //         setCount(0);
+        //     }
+        //     return(
+        //         <><button onClick={rsestCount}>Reset</button></>
+        //     )
+        // }
+       
+        function DynamicInput(){
+            const [text,setText] = React.useState('');
+            function displayText(event){
+              setText(event.target.value);
+            }
+            function resetText(){
+                setText('');
+            }
+            function setExample(){
+                setText('Babe');
+            }
+            return(
+                <>
+                    <input type="text" onChange={displayText} value={text}/>
+                    <p>Hello {text}</p>
+                    <button onClick = {resetText}>Reset</button>
+                    <button onClick={setExample}>Example</button>
+                </>
+            )
+        }
+
+        function App(){
+            const [count , setCount] = React.useState(0);
+            return(
+                // <>
+                //     <TimesClicked count = {count} setCount = {setCount}/>
+                //     <Reset setCount = {setCount}/>
+                // </>
+                <>
+                    <DynamicInput/>
+                </>
+            );
+        }
+       const container = document.querySelector('.js-container');
+       ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>

@@ -118,11 +118,18 @@
     <script type="text/babel">//In React each word of a component should start with capital letter(Pascal Case)
         function ChatInput({ chatMessages, setChatMessages }) {//now we can access this state from our own created attributes
             const [inputText, setInputText] = React.useState('');
+            const [isLoading, setIsLoading] = React.useState(false);
             function saveInputText(event) {//event is an object which contains the properties of onchange element.
                 setInputText(event.target.value);//used as a funcn will update the data and the html both
             }
 
-            function sendMessage() {
+           async function sendMessage() {
+                if (isLoading || inputText === '') {
+                    return;//if isLoading is true which means the chatbot is still processing a previous message (waiting for the bot’s response).This prevents from sending another message when the bot hasnt replied yet
+                }//if inputText === '' means the input box is empty This stops sending empty messages (which would be pointless).
+                 // Set isLoading to true at the start, and set it to
+                 // false after everything is done.
+                 setIsLoading(true);
                 const newChatMessages = [//here we're first spreading the old messages and then actually adding the new messages after it as well into the array and the old array is safe which is chatMessages
                     ...chatMessages,//syntax of spread oprtr
                     {//this the new data to be updated
@@ -130,21 +137,45 @@
                         sender: "user",
                         id: crypto.randomUUID()
                     }
-                ]
-                setChatMessages(newChatMessages);//we're explicitly using setChatMessages unlike right below bcz State doesn't updates the old data until the code is finished or html is rendered
-
-                const response = Chatbot.getResponse(inputText);
+                ];
+                setChatMessages([
+                   ...newChatMessages,
+                     // This creates a temporary Loading... message.
+                    // Because we don't save this message in newChatMessages,
+                    // it will be remove later, when we add the response.
+                     {
+                        message: 'Loading...',
+                        sender: 'robot',
+                        id: "loading-message"
+                    }
+                ]);//we're explicitly using setChatMessages unlike right below bcz State doesn't updates the old data until the code is finished or html is rendered
+                 // We can put this here or at the top of this function
+                // (clear the textbox immediately after clicking Send).
+                // Both solutions work.
+                setInputText('');
+                const response = await Chatbot.getResponseAsync(inputText);
                 setChatMessages([//will update the data and the html both
-                    ...newChatMessages,//we're chatMessages bcz code needs to be finished for updation of old data Instead we're using newChatmessages which finishes the code first and then updates the chatmessages
+                    // This makes a copy of newChatMessages, but without the
+                    // last message in the array.
+                    ...newChatMessages.filter(msg => msg.id !== "loading-message"),//we're not using chatMessages bcz code needs to be finished for updation of old data Instead we're using newChatmessages which finishes the code first and then updates the chatmessages
                     {//this the new data to be updated
                         message: response,
                         sender: "robot",
                         id: crypto.randomUUID()
                     }
                 ]);
-
-                setInputText('');
-
+                 // Set isLoading to false after everything is done.
+                 setIsLoading(false);
+                
+            }
+            function sendOnEnter(event){
+                if(event.key === 'Enter'){//this will send the message on enter
+                    sendMessage();
+                    setInputText('');
+                }
+                if(event.key === 'Escape'){
+                   setInputText('');
+                }
             }
 
             return (
@@ -155,6 +186,7 @@
                         onChange={saveInputText}//dont put parenthesis over here.React will provide argument itself on some change
                         value={inputText}//we're puting the value of input to inputText and after sending a message value of inputText is updated to empty string above in sendMessage funcn by setInputText so the input box will become empty after sending a message. It is called a controlled input
                         className="chat-input"
+                        onKeyDown={sendOnEnter}
                     />
                     <button onClick={sendMessage} className="send-button">Send</button>
                 </div>
@@ -266,6 +298,8 @@
         const container = document.querySelector('.js-container');
         ReactDOM.createRoot(container).render(<App />);
     </script>
+
+
 </body>
 
 </html>
