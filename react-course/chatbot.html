@@ -116,26 +116,26 @@
     <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">//In React each word of a component should start with capital letter(Pascal Case)
-        function ChatInput({ chatMessages, setChatMessages }) {//now we can access this state
+        function ChatInput({ chatMessages, setChatMessages }) {//now we can access this state from our own created attributes
             const [inputText, setInputText] = React.useState('');
             function saveInputText(event) {//event is an object which contains the properties of onchange element.
-                setInputText(event.target.value);
+                setInputText(event.target.value);//used as a funcn will update the data and the html both
             }
 
             function sendMessage() {
                 const newChatMessages = [//here we're first spreading the old messages and then actually adding the new messages after it as well into the array and the old array is safe which is chatMessages
                     ...chatMessages,//syntax of spread oprtr
                     {//this the new data to be updated
-                        message: inputText,
+                        message: inputText,//inputText will be the new data updated by the function saveInputText above
                         sender: "user",
                         id: crypto.randomUUID()
                     }
                 ]
-                setChatMessages(newChatMessages);
+                setChatMessages(newChatMessages);//we're explicitly using setChatMessages unlike right below bcz State doesn't updates the old data until the code is finished or html is rendered
 
                 const response = Chatbot.getResponse(inputText);
-                setChatMessages([
-                    ...newChatMessages,//syntax of spread oprtr
+                setChatMessages([//will update the data and the html both
+                    ...newChatMessages,//we're chatMessages bcz code needs to be finished for updation of old data Instead we're using newChatmessages which finishes the code first and then updates the chatmessages
                     {//this the new data to be updated
                         message: response,
                         sender: "robot",
@@ -152,8 +152,8 @@
                     <input
                         type="text"
                         placeholder="Send message to Chatbot"
-                        onChange={saveInputText}
-                        value={inputText}
+                        onChange={saveInputText}//dont put parenthesis over here.React will provide argument itself on some change
+                        value={inputText}//we're puting the value of input to inputText and after sending a message value of inputText is updated to empty string above in sendMessage funcn by setInputText so the input box will become empty after sending a message. It is called a controlled input
                         className="chat-input"
                     />
                     <button onClick={sendMessage} className="send-button">Send</button>
@@ -208,7 +208,7 @@
             }
                
             },[chatMessages]);
-            return (//a funstion can only return one element at a time so for multiple elements enclose them in a div
+            return (//a function can only return one element at a time so for multiple elements enclose them in a div
                 <div className="chat-messages-container"
                 ref={chatMessagesRef}
                 >
@@ -249,7 +249,7 @@
                     }
                 ]
             );
-            //we removed above code from ChatMessages funcn to its parent component i.e. App this makes the availability of state to all the child component of App nad this process is called lifting the state up
+            //we removed above code from ChatMessages funcn to its parent component i.e. App this makes the availability of state to all the child component of App and this process is called lifting the state up . We did it so that ChatInput can use it as well
             return (
                 <div className="app-container">{/*Here we now add some props (attributes) to our created element ChatInput */}
                     
@@ -258,7 +258,7 @@
                     <ChatInput //here we created our own html element. One way to do this is use <></> and run the funcn inside using {} but this is the shorter way
                         chatMessages={chatMessages}//here we created our own attributes
                         setChatMessages={setChatMessages}//these attributes are passed in an object to the ChatInput funcn
-                    />
+                    />{/*the two above values have been lifted up to App compo. from ChatMessages compo. so they can be used by ChatInput compo.*/}
                 </div>
             );
         }
