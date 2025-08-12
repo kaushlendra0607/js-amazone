@@ -1,10 +1,16 @@
 import { HomePage } from './pages/HomePage'
+import {Routes,Route} from 'react-router'//for routing we need to put our App in Routes and Route Routes tells react that there are several pages and Route ia basically a page
 import './App.css'
 
 function App() {
 
   return (
-    <HomePage/>
+    <Routes>
+      <Route index /* path tells the url path of the page only a slash means url is empty which will take us to home page and index does the same thing as path="/"*/ 
+      element ={ <HomePage/>}//element tells react which element to display
+      />
+      <Route path="checkout" element={<div><p>Hellooo</p></div>}/>{/* this way the html of index file is shared and now we'll juast have to create the elements and put them here it's called SPA single page application*/}
+    </Routes>
   )
 }
 

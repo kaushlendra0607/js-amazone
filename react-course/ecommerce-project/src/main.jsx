@@ -1,10 +1,13 @@
 import { StrictMode } from 'react'
+import {BrowserRouter} from 'react-router'//routing lets us create multiple pages with single html file and according to react documentation we need to put our element in element called BrowserRouter and inside our App compo. we need to add the compo. called Routes
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
 )
