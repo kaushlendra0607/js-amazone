@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+        .input-text{
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 4px;
+        }
+        .input-pass{
+            padding: 10px 20px;
+            margin: 0px 10px 10px 10px;
+            border-radius: 4px;
+        }
+        .button-login{
+            margin: 10px;
+            padding: 6px 10px ;
+            border-radius: 4px;
+            border: none;
+            background-color: rgb(0,123,255);
+            color: aliceblue;
+        }
+        .button-signup,.button-show{
+            padding: 6px 10px ;
+            border-radius: 4px;
+            border: none;
+            background-color: rgb(0,123,255);
+            color: aliceblue;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script type="text/babel">//the last two quesn of lesson 4 arnt done yet
+        function LoginFrom(){
+            const [password,setPassword] = React.useState(true);
+            function showPassword(){
+                setPassword(!password);
+            }
+            return(
+                <>
+                    <div><input className="input-text" type="text" placeholder="Email"/></div>
+                    <div>
+                        <input className="input-pass" type={password ? 'password' : 'text'} placeholder="Password"/>
+                        <button className="button-show" onClick={showPassword}>
+                            {password ? 'Show Password' : 'Hide Password'}
+                        </button>
+                    </div>
+                    <button className="button-login">Login</button>
+                    <button className="button-signup">Sign up</button>
+                </>
+            );
+        }
+        
+        function ShowTime(){
+            const [currentTime, setCurrentTime] = React.useState(dayjs().format('HH:mm:ss'));
+            React.useEffect(()=>{
+                setCurrentTime(dayjs().format('HH:mm:ss'));
+               const timer = setInterval(()=>{
+                    setCurrentTime(dayjs().format('HH:mm:ss'));
+                },1000);
+                return ()=> clearInterval(timer);
+            },[]);
+            return(
+                <>
+                    <div>
+                        {currentTime}
+                    </div>
+                </>
+            );
+        }
+
+
+        function App(){
+            return(
+                <>
+                    <p>Hello! Welcome to my website.</p>
+                    <LoginFrom/>
+                    <ShowTime/>
+                </>
+            );
+        }
+       const container = document.querySelector('.js-container');
+       ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>
