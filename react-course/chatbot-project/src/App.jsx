@@ -3,6 +3,7 @@ import { ChatInput } from './components/ChatInput'
 import ChatMessages from './components/ChatMessages';
 
 import './App.css';
+import { Chatbot } from 'supersimpledev';
 
 function App() {
             const [chatMessages, setChatMessages] = useState(/*no need to use the word React as we imported the useState directly*/
