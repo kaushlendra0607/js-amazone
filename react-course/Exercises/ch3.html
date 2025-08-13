@@ -11,26 +11,34 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-        // function TimesClicked({count, setCount}){
-        //     function printing(){
-        //         setCount(count+1);
-        //         console.log('Clicked');
-        //     }
-        //     return(
-        //         <>
-        //             {count <= 1 ? <button onClick={printing}>Clicked {count} time.</button> : <button onClick={printing}>Clicked {count} times.</button>}
-        //             {count <= 1 ? <button onClick={printing}>Clicked {count} time.</button> : <button onClick={printing}>Clicked {count} times.</button>}
-        //         </>
-        //     );
-        // }
-        // function Reset({setCount}){
-        //     function rsestCount(){
-        //         setCount(0);
-        //     }
-        //     return(
-        //         <><button onClick={rsestCount}>Reset</button></>
-        //     )
-        // }
+        function TimesClicked({count, setCount}){
+            function printing(){
+                setCount(count+1);
+            }
+            const refElem = React.useRef();
+            function autoClick(){
+                const buttonElem = refElem.current;
+                    if(buttonElem){
+                        const interval = setInterval(() => {
+                            buttonElem.click();
+                        }, 1000);
+                    }
+            }
+            return(
+                <>
+                    <button onClick={printing} ref={refElem}>Clicked {count} {count <=1 ? 'time':'times'}</button>
+                    <button onClick={autoClick}>Auto Click</button>
+                </>
+            );
+        }
+        function Reset({setCount}){
+            function rsestCount(){
+                setCount(0);
+            }
+            return(
+                <><button onClick={rsestCount}>Reset</button></>
+            )
+        }
        
         function DynamicInput(){
             const [text,setText] = React.useState('');
@@ -56,13 +64,13 @@
         function App(){
             const [count , setCount] = React.useState(0);
             return(
-                // <>
-                //     <TimesClicked count = {count} setCount = {setCount}/>
-                //     <Reset setCount = {setCount}/>
-                // </>
                 <>
-                    <DynamicInput/>
+                    <TimesClicked count = {count} setCount = {setCount}/>
+                    <Reset setCount = {setCount}/>
                 </>
+                // <>
+                //     <DynamicInput/>
+                // </>
             );
         }
        const container = document.querySelector('.js-container');
