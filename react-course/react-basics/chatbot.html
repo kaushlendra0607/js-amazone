@@ -239,7 +239,7 @@
                 //scrollTop is how far is scroll from the top and scrollHeight is total scroling height of the element so if we set the scrollTop equal to Height then it will get on bottom...
             }
                
-            },[chatMessages]);
+            },[chatMessages]);//the array provided here controls the times useEffect runs go chatgpt for more
             return (//a function can only return one element at a time so for multiple elements enclose them in a div
                 <div className="chat-messages-container"
                 ref={chatMessagesRef}
