@@ -19,3 +19,9 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+.message-time{
+    font-size: 12px;
+    color: rgb(125, 125, 125);
+    margin-top: 5px;
+}

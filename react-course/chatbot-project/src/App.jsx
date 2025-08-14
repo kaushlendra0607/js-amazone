@@ -12,18 +12,22 @@ function App() {
                         message: " hello sir..",
                         sender: "user",
                         id: "id1"
+                        ,timestamp: Date.now()
                     }, {
                         message: "Hello! How can I help you?",
                         sender: "robot",
                         id: "id2"
+                        ,timestamp: Date.now()
                     }, {
                         message: "flip a damn coin",
                         sender: "user",
                         id: "id3"
+                        ,timestamp: Date.now()
                     }, {
                         message: "Sure! You got heads",
                         sender: "robot",
                         id: "id4"
+                        ,timestamp: Date.now()
                     }
                 ]
             );

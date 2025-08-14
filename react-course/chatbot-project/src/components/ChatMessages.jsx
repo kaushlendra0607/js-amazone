@@ -37,6 +37,7 @@ function ChatMessages({ chatMessages }) {//using state will change the html as w
                                     message={chatMessage.message}
                                     sender={chatMessage.sender}
                                     key={chatMessage.id}
+                                    timestamp={chatMessage.timestamp}
                                 />
                             );
                         })

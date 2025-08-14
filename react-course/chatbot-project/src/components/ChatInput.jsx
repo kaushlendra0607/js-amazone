@@ -9,24 +9,31 @@ export function ChatInput({ chatMessages, setChatMessages }) {//now we can acces
             }
 
             function sendMessage() {
+                 const userMessage = {
+                    message: inputText,
+                    sender: "user",
+                    id: crypto.randomUUID(),
+                    timestamp: Date.now()
+                };
                 const newChatMessages = [
                     ...chatMessages,//syntax of spread oprtr
-                    {//this the new data to be updated
-                        message: inputText,
-                        sender: "user",
-                        id: crypto.randomUUID()
-                    }
+                    //this the new data to be updated
+                    userMessage
                 ]
                 setChatMessages(newChatMessages);
 
                 const response = Chatbot.getResponse(inputText);
+                const botMessage = {
+                    message: response,
+                    sender: "robot",
+                    id: crypto.randomUUID(),
+                    timestamp: Date.now()
+                };
+
                 setChatMessages([
                     ...newChatMessages,//syntax of spread oprtr
-                    {//this the new data to be updated
-                        message: response,
-                        sender: "robot",
-                        id: crypto.randomUUID()
-                    }
+                    //this the new data to be updated
+                     botMessage
                 ]);
 
                 setInputText('');
