@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ChatInput } from './components/ChatInput'
 import ChatMessages from './components/ChatMessages';
 
@@ -28,6 +28,18 @@ function App() {
                 ]
             );
             //we removed above code from ChatMessages funcn to its parent component i.e. App this makes the availability of state to all the child component of App nad this process is called lifting the state up
+            useEffect(() => {
+                    Chatbot.addResponses({
+                    'goodbye': 'Goodbye. Have a great day!',
+                    'give me a unique id': function() {
+                        return `Sure! Here's a unique ID: ${crypto.randomUUID()}`;
+                    }
+                    });
+
+                // [] tells useEffect to only run once. We only want to run
+                // this setup code once because we only want to add these
+                // extra responses once.
+            }, []);
             return (
                 <div className="app-container">{/*Here we now add some props (attributes) to our created element ChatInput */}
                     
