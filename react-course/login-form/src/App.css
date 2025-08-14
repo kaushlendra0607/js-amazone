@@ -1,0 +1,51 @@
+
+.input-text{
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 4px;
+}
+.input-pass:focus ,.input-text:focus{
+    border: 2px solid transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-image:
+        linear-gradient(#fff, #fff),
+        linear-gradient(120deg, #ff00cc, #3333ff, #00ffff);
+    animation: animated-outline 2s linear infinite;
+    outline: none;
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+}
+  @keyframes animated-outline {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.input-pass{
+    padding: 10px 20px;
+    margin: 0px 10px 10px 10px;
+    border-radius: 4px;
+}
+.button-login{
+    margin: 10px;
+    padding: 6px 10px ;
+    border-radius: 4px;
+    border: none;
+    background-color: rgb(0,123,255);
+    color: aliceblue;
+}
+.button-signup,.button-show{
+    padding: 6px 10px ;
+    border-radius: 4px;
+    border: none;
+    background-color: rgb(0,123,255);
+    color: aliceblue;
+}
