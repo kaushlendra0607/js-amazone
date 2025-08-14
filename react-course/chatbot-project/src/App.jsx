@@ -47,6 +47,15 @@ function App() {
                 // this setup code once because we only want to add these
                 // extra responses once.
             }, []);
+             if (chatMessages.length===0){
+                return(
+                    <div className="app-container">
+                    <div className="initial-message">Welcome to chatbot Project.Send a message using textbox below</div>
+                    <ChatMessages chatMessages={chatMessages} />
+                    <ChatInput chatMessages={chatMessages} setChatMessages={setChatMessages}/>
+                    </div>
+                )
+            }
             return (
                 <div className="app-container">{/*Here we now add some props (attributes) to our created element ChatInput */}
                     
