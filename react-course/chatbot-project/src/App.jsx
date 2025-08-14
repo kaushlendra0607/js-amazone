@@ -7,7 +7,7 @@ import { Chatbot } from 'supersimpledev';
 
 function App() {
             const [chatMessages, setChatMessages] = useState(/*no need to use the word React as we imported the useState directly*/
-                [
+                JSON.parse(localStorage.getItem('messages')) ||  [
                     {
                         message: " hello sir..",
                         sender: "user",
@@ -32,6 +32,9 @@ function App() {
                 ]
             );
             //we removed above code from ChatMessages funcn to its parent component i.e. App this makes the availability of state to all the child component of App nad this process is called lifting the state up
+            useEffect(()=>{
+                localStorage.setItem('messages',JSON.stringify(chatMessages));
+            },[chatMessages]);
             useEffect(() => {
                     Chatbot.addResponses({
                     'goodbye': 'Goodbye. Have a great day!',

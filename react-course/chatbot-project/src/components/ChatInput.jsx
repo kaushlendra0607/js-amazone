@@ -2,9 +2,9 @@ import { useState } from 'react'
 import {Chatbot} from 'supersimpledev'
 import './ChatInput.css'
 
-export function ChatInput({ chatMessages, setChatMessages }) {//now we can access this state
+export function ChatInput({ chatMessages, setChatMessages }) {//now we can access this state after lifting state up
             const [inputText, setInputText] = useState('');
-            function saveInputText(event) {//event is an object which contains the properties of       onchange element.
+            function saveInputText(event) {//event is an object which contains the properties of onchange element.
                 setInputText(event.target.value);
             }
 
@@ -39,6 +39,16 @@ export function ChatInput({ chatMessages, setChatMessages }) {//now we can acces
                 setInputText('');
 
             }
+            function clearMessages() {
+                setChatMessages([]);
+
+                // Here, you could also run:
+                // localStorage.setItem('messages', JSON.stringify([]));
+
+                // However, because chatMessages is being updated, the
+                // useEffect in the App component will run, and it will
+                // automatically update messages in localStorage to be [].
+            }
 
             return (
                 <div className="chat-input-container">
@@ -50,6 +60,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {//now we can acces
                         className="chat-input"
                     />
                     <button onClick={sendMessage} className="send-button">Send</button>
+                    <button onClick={clearMessages} style={{padding:'12px',borderRadius:'8px',border:'none',backgroundColor:'rgb(180,180,180)'}}>Clear</button>
                 </div>
             );
         }
