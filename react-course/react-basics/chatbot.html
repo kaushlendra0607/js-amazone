@@ -222,6 +222,19 @@
             );
         }
 
+         // To use a function as a hook, the function name must
+        // start with "use".
+        function useAutoScroll(dependencies){
+             const containerRef = React.useRef(null);
+             React.useEffect(()=>{
+                const containerElem = containerRef.current;
+                if (containerElem) {
+                    containerElem.scrollTop = containerElem.scrollHeight;
+                }
+             },dependencies);
+             return containerRef;
+        }
+
         function ChatMessages({ chatMessages }) {//using state will change the html as well when the data changes.
             // const chatMessages = array[0];//array[0] gives the current data from state.
             // const setChatMessages = array[1];//this is actually a function and has to be treated xactly like a funcn. this updates the data in future.
@@ -237,15 +250,16 @@
                  the above method is modifying the data directly.Not good practice 
                  we shuld modify the copy of  the data.Use useState...
                   }*/
-            const chatMessagesRef=React.useRef(null);//useRef lets us save an html element ,basically works like queryselector
-            React.useEffect(()=>{//useEffect lets us run some code after a component is created or updated
-            const containerElem = chatMessagesRef.current;
-            if(containerElem){
-                containerElem.scrollTop=containerElem.scrollHeight;
-                //scrollTop is how far is scroll from the top and scrollHeight is total scroling height of the element so if we set the scrollTop equal to Height then it will get on bottom...
-            }
+            // const chatMessagesRef=React.useRef(null);//useRef lets us save an html element ,basically works like queryselector
+            // React.useEffect(()=>{//useEffect lets us run some code after a component is created or updated
+            // const containerElem = chatMessagesRef.current;
+            // if(containerElem){
+            //     containerElem.scrollTop=containerElem.scrollHeight;
+            //     //scrollTop is how far is scroll from the top and scrollHeight is total scroling height of the element so if we set the scrollTop equal to Height then it will get on bottom...
+            // }
                
-            },[chatMessages]);//the array provided here controls the times useEffect runs go chatgpt for more
+            // },[chatMessages]);//the array provided here controls the times useEffect runs go chatgpt for more
+            const chatMessagesRef = useAutoScroll([chatMessages]);
             return (//a function can only return one element at a time so for multiple elements enclose them in a div
                 <div className="chat-messages-container"
                 ref={chatMessagesRef}
