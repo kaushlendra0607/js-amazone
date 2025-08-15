@@ -10,7 +10,7 @@ function App() {
   return (
     <Routes>
       <Route index /* path tells the url path of the page only a slash means url is empty which will take us to home page and index does the same thing as path="/"*/ 
-      element ={ <HomePage/>}//element tells react which element to display
+      element ={ <HomePage/>}//element tells react which element(page) to display
       />
       <Route path="checkout" element={<CheckoutPage/>}/>{/* this way the html of index file is shared and now we'll juast have to create the elements and put them here it's called SPA single page application*/}
       <Route path="orders" element={<OrdersPage/>}/>
