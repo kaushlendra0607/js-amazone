@@ -5,6 +5,7 @@ export function HomePage(){
     return(
     <>
         <title>Ecommerce Project</title>
+        <link rel="icon" type="image/svg+xml" href="home-favicon.png" />{/* if we give a file name directly to href then vite will automatically search for the file in public folder */}
         <Header/>
         <div className="home-page">
         <div className="products-grid">

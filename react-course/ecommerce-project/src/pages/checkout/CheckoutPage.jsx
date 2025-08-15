@@ -4,6 +4,7 @@ import { CheckoutHeader } from './CheckoutHeader';
 export function CheckoutPage(){
     return(<>
         <title>Checkout</title>{/* pasting title element at the top will give it a different title from the title in shared html file */}
+        <link rel="icon" type="image/svg+xml" href="cart-favicon.png" />
         < CheckoutHeader />
 
         <div className="checkout-page">
