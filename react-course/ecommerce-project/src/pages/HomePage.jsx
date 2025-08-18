@@ -1,9 +1,18 @@
 import { Header } from '../Components/Header';
+import axios from 'axios'
 import { products } from "../../starting-code/data/products"
 import './HomePage.css';
 import checkmark from "../assets/images/icons/checkmark.png"
 
 export function HomePage() {
+    axios.get("http://localhost:3000/api/products")//fetch is actually asynchrounous thats why we have used then() here
+        .then((response)=>{
+            console.log(response.data);//but we're using axios not fetch now
+        })
+        // .then((response)=>{
+        //     return response.json();//this is also asynchronous
+        // }).then((data)=>{console.log(data)//this is for response being asynchronous, we can also use it inside right beside response.json() without return it will work same way
+        // });
     return (
         <>
             <title>Ecommerce Project</title>
