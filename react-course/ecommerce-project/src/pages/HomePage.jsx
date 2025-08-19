@@ -5,18 +5,14 @@ import './HomePage.css';
 import checkmark from "../assets/images/icons/checkmark.png"
 import { useEffect, useState } from 'react';
 
-export function HomePage() {
+export function HomePage({cart}) {
     const [products , setProducts] = useState([]);
-    const [cart , setCart] = useState([]);
     useEffect(()=>{
         axios.get("/api/products")//fetch is actually asynchrounous thats why we have used then() here
             .then((response)=>{
                 setProducts(response.data);//but we're using axios not fetch now
             });
-        axios.get('/api/cart-items')
-            .then((response)=>{
-                setCart(response.data);//we can get data by using .data in axios   
-            })
+        
     },[]) 
     
         // .then((response)=>{
