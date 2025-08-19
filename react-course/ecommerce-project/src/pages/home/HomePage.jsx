@@ -9,11 +9,16 @@ import { ProductsGrid } from './ProductsGrid';
 
 export function HomePage({cart}) {
     const [products , setProducts] = useState([]);
-    useEffect(()=>{
-        axios.get("/api/products")//fetch is actually asynchrounous thats why we have used then() here
-            .then((response)=>{
-                setProducts(response.data);//but we're using axios not fetch now
-            });
+    useEffect(()=>{//a useEffect should return nothing or cleaner funcn meaning overall it must not return a promise but async does returns a promise thats why we created another function inside useEffect here
+        const getHomeData = async ()=>{//async await lets us write code like normal unlike using then below in comments
+            const response = await axios.get("/api/products");
+            setProducts(response.data);
+        };
+        getHomeData();
+        // axios.get("/api/products")//fetch is actually asynchrounous thats why we have used then() here
+        //     .then((response)=>{
+        //         setProducts(response.data);//but we're using axios not fetch now
+        //     });
         
     },[]) 
     

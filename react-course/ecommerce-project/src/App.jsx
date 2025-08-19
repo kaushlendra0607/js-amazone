@@ -11,11 +11,16 @@ import axios from 'axios'
 function App() {
     const [cart , setCart] = useState([]);
     useEffect(()=>{
-      axios.get('/api/cart-items?expand=product')//the part from ? is called query parameter gpt for more
-            .then((response)=>{
-                setCart(response.data);//we can get data by using .data in axios   
-            })
-    },[])
+      const fetchAppData = async()=>{//comments for async await are in homepage.jsx
+        const response = await axios.get('/api/cart-items?expand=product');
+        setCart(response.data);
+      };
+      fetchAppData();
+      // axios.get('/api/cart-items?expand=product')//the part from ? is called query parameter gpt for more
+      //       .then((response)=>{
+      //           setCart(response.data);//we can get data by using .data in axios   
+      //       })
+    },[]);
 
   return (
     <Routes>
