@@ -1,7 +1,7 @@
 import './tracking.css'
 import { Header } from '../Components/Header';
 import { Link } from 'react-router';
-import { OrdersPage } from './OrdersPage';
+import { OrdersPage } from './orders/OrdersPage';
 
 export function TrackingPage(){
     return(<>
