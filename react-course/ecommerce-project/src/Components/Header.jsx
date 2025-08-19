@@ -4,7 +4,11 @@ import carticon from "../assets/images/icons/cart-icon.png"
 import searchicon from "../assets/images/icons/search-icon.png"
 import './header.css'//Link element lets us go to another page without reloading
 //NavLink is used generally for navigation links like the links in header of a page The additional Feature it has is that it knows which website is being loaded unlike Link It adds a specific class to the active link for more use gpt
-export function Header() {//Link doesnt uses href it uses to
+export function Header({ cart = [] } = {}) {//Link doesnt uses href it uses to
+    let totalQuantity = 0;
+    cart.forEach(cartItem => {
+        totalQuantity += cartItem.quantity;
+    });
     return (
         <>
             <div className="header">
@@ -33,7 +37,7 @@ export function Header() {//Link doesnt uses href it uses to
 
                     <NavLink className="cart-link header-link" to="/checkout">
                         <img className="cart-icon" src={carticon} />
-                        <div className="cart-quantity">3</div>
+                        <div className="cart-quantity">{totalQuantity}</div>
                         <div className="cart-text">Cart</div>
                     </NavLink>
                 </div>
