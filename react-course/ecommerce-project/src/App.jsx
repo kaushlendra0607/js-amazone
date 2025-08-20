@@ -29,8 +29,8 @@ function App() {
       />
       <Route path="checkout" element={<CheckoutPage cart={cart}/>}/>{/* this way the html of index file is shared and now we'll juast have to create the elements and put them here it's called SPA single page application*/}
       <Route path="orders" element={<OrdersPage cart={cart}/>}/>
-      <Route path='tracking' element={<>{TrackingPage()}</>}/>
-      <Route path='*' element={<PageNotFound/>}></Route>
+      <Route path='tracking/:orderId/:productId' element={<TrackingPage cart = {cart}/>}/>
+      <Route path='*' element={ <PageNotFound cart={cart} />}></Route>
     </Routes>
   )
 }
