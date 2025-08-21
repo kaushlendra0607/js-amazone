@@ -1,8 +1,8 @@
 import { renderOrderSummary } from '../../scripts/checkout/ordersummary.js';
 import { loadFromStorage, cart} from '../../data/cart.js';
-
+//we should create two types of test cases one for normal data other for edge cases
 import { loadProducts ,loadProductsFetch} from '../../data/products.js';
-
+//describe and it together create a test describe creates a suite and it creates some test cases
 describe('test suite:renderOrderSummary', () => {
 
         const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
