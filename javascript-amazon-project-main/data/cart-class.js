@@ -5,11 +5,11 @@
 
 class Cart {
     cartItems;//shorthand for cartItems = undefined;
-    #localStorageKey;
+    #localStorageKey;//# sign is used to make this variable private which means it can only be used in this class only gpt for more
 
     constructor(localStorageKey) {
         this.#localStorageKey = localStorageKey;//a constructor should not return anything
-        this.#loadFromStorage();//this points towards the object being generated and parameter will be propagated by #
+        this.#loadFromStorage();//this points towards the object being generated
     }
 
     #loadFromStorage() {
@@ -78,13 +78,11 @@ class Cart {
 
 
 //for classes we usually use new
-//the parameter will be passed to variable which we have put # before and the function with # sign in front will be exected by itself
 const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
 //we can simply pass the argument by doing
-//cart.localStorageKey = 'cart-oop';
-//and it doesnt require # sign
-//but this way well have to explicitely call the function like
+//cart.localStorageKey = 'cart-oop';but not a good practice as it should be kept private bcz probably one can use it and change the localStorage key
+//but this way well have to explicitely call the function like but using constructor we can share it for both or as much objects we want to generate
 //cart.loadFromStorage(); A constructor lets us put all this setup code in inside the class and it runs that particular code automatically while getnerating objects in the class
 
 
