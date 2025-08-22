@@ -2,6 +2,8 @@ import { renderOrderSummary } from '../../scripts/checkout/ordersummary.js';
 import { loadFromStorage, cart} from '../../data/cart.js';
 //we should create two types of test cases one for normal data other for edge cases
 import { loadProducts ,loadProductsFetch} from '../../data/products.js';
+//testing a function like renderOrderSummary tests several other functions which are used in it these are called integration test
+//renderOrderSummary creates a part of the page so we have to test two things that how the page looks and how the page behaves
 //describe and it together create a test describe creates a suite and it creates some test cases
 describe('test suite:renderOrderSummary', () => {
 
@@ -12,9 +14,9 @@ describe('test suite:renderOrderSummary', () => {
             done();
         });
     })
-    beforeEach(()=>{
+    beforeEach(()=>{//beforEach lets us write some code and share it where it will be needed so we dont have to rewrite it
         spyOn(localStorage,'setItem');
-
+        //to test that how the page looks there should be html on the page
         document.querySelector('.js-test-container').innerHTML = `
             <div class="js-order-summary"></div>
             <div class="js-payment-summary"></div>
@@ -40,7 +42,8 @@ describe('test suite:renderOrderSummary', () => {
         renderOrderSummary();
     })
     it('displays the cart', () => {
-     
+        //here we're checking that if there are two elements which are in mocked cart are rendered on the page
+        //and if they are rendered then there will be two elements in node provided by querySelectorAll
         expect(document.querySelectorAll('.js-cart-item-container').length).toEqual(2);
         expect(
             document.querySelector(`.js-product-quantity-${productId1}`).innerText
@@ -51,7 +54,7 @@ describe('test suite:renderOrderSummary', () => {
         //  document.querySelector('.js-test-container').innerHTML = '';
     });
     it('it removes a product', () => {
-        
+        //first we'll click delete on first product and then test it
         document.querySelector(`.js-delete-link-${productId1}`).click();
         expect(document.querySelectorAll('.js-cart-item-container').length).toEqual(1);
         expect(document.querySelector(`.js-cart-item-container-${productId1}`)).toEqual(null);
@@ -61,6 +64,6 @@ describe('test suite:renderOrderSummary', () => {
         
     });
     afterEach(()=>{
-        document.querySelector('.js-test-container').innerHTML = '';
-    })
+        document.querySelector('.js-test-container').innerHTML = '';//cleanup code usually put in afterEach
+    });//after all the tests are complete we dont want any html on our test page
 });
