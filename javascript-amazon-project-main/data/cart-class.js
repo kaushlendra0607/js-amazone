@@ -7,7 +7,7 @@ class Cart {
     cartItems;//shorthand for cartItems = undefined;
     #localStorageKey;//# sign is used to make this variable private which means it can only be used in this class only gpt for more
 
-    constructor(localStorageKey) {
+    constructor(localStorageKey) {//constructors are the best way to assign values to keywords of objects in classes
         this.#localStorageKey = localStorageKey;//a constructor should not return anything
         this.#loadFromStorage();//this points towards the object being generated
     }

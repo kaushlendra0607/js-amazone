@@ -26,7 +26,7 @@ export class Product {
   }
 
   getStarsUrl() {
-    return `images/ratings/rating-${this.rating.stars * 10}.png`;
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;//this points towards the object being generated
   }
 
   getPrice() {
