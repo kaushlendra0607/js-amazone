@@ -1,9 +1,12 @@
-function Cart(localStorageKey){
+//in object oriented programming we group our data and our function into objects
+//oop tries to represent the real world
+//use pascal case for object generators called classes like Cart here
+function Cart(localStorageKey){//the parameter localStorageKey will be used for saving keys names in localStorage
     const cart = {
     cartItems: undefined,
-    loadFromStorage() {
+    loadFromStorage() {//this is shorthand method syntax full code: loadFromStorage: function(){}
         this.cartItems = JSON.parse(localStorage.getItem(localStorageKey));
-        if (!this.cartItems) {
+        if (!this.cartItems) {//this indicates towards this object which is cart here
             this.cartItems = [{
                 productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
                 quantity: 2,
@@ -38,7 +41,7 @@ function Cart(localStorageKey){
             deliveryOptionId: '1'
         });
     }
-    this.saveToStorage();
+    this.saveToStorage();//saveToStorage alone doesnt works without this here
 },
 
     removeFromCart(productId) {

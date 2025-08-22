@@ -1,10 +1,15 @@
+//classes are object generators like the function in cart-oop.js
+//by usning class instead of function we get lot of more features of js
+//in classes we dont use comma for separation but can use ;
+//a class isnt exactly a function
+
 class Cart {
-    cartItems;
+    cartItems;//shorthand for cartItems = undefined;
     #localStorageKey;
 
     constructor(localStorageKey) {
-        this.#localStorageKey = localStorageKey;
-        this.#loadFromStorage();
+        this.#localStorageKey = localStorageKey;//a constructor should not return anything
+        this.#loadFromStorage();//this points towards the object being generated and parameter will be propagated by #
     }
 
     #loadFromStorage() {
@@ -72,10 +77,19 @@ class Cart {
 }
 
 
+//for classes we usually use new
+//the parameter will be passed to variable which we have put # before and the function with # sign in front will be exected by itself
 const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
+//we can simply pass the argument by doing
+//cart.localStorageKey = 'cart-oop';
+//and it doesnt require # sign
+//but this way well have to explicitely call the function like
+//cart.loadFromStorage(); A constructor lets us put all this setup code in inside the class and it runs that particular code automatically while getnerating objects in the class
 
 
+//an object geneated by a class is called an instance of a class
 console.log(cart);
 console.log(businessCart);
 console.log(businessCart instanceof Cart);//it will check if businessCart object was generated from class Cart.
+//means above will check if buisnessCart is an instance of class Cart

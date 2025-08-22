@@ -1,5 +1,6 @@
 import { products, Clothing, Product } from "./products.js";
 
+//the code below is an example of procedural programming here the instructions(functions) and the data are kept seperate
 export let cart;
 
 loadFromStorage();
