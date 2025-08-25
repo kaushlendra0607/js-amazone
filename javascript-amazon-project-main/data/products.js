@@ -37,15 +37,19 @@ export class Product {
     return '';
   }
 }
-
+//When we want some product specific properties to be added we created inherited classes
+//as here Product is parent class and Clothing is child class means child will inherit all the properties of Product such as id name etc but we can add some more properties to Clothing for cloths
+//we use built in keyword extends for this, inheritence lets us reuse codes between classes 
 export class Clothing extends Product {
   sizeChartLink;
   constructor(productDetails) {
-    super(productDetails);
+    super(productDetails);//by using super we get the access to parent's properties
     this.sizeChartLink = productDetails.sizeChartLink;
   }
 
   extraInfoHTML() {
+    //super.extraInfoHTML();//here super will call the extraInfoHTML function which is in parent class
+    //we do this if in case we dont want our data to be overWritten
     return `
         <a href="${this.sizeChartLink}" target="_blank">Size Chart</a>
       `
