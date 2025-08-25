@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 // import { formatMoney } from '../../utils/money';
 import { ProductsGrid } from './ProductsGrid';
 
-export function HomePage({cart}) {
+export function HomePage({cart, loadCart}) {
     const [products , setProducts] = useState([]);
     useEffect(()=>{//a useEffect should return nothing or cleaner funcn meaning overall it must not return a promise but async does returns a promise thats why we created another function inside useEffect here
         const getHomeData = async ()=>{//async await lets us write code like normal unlike using then below in comments
@@ -32,7 +32,7 @@ export function HomePage({cart}) {
             <link rel="icon" type="image/svg+xml" href="home-favicon.png" />{/* if we give a file name directly to href then vite will automatically search for the file in public folder */}
             <Header cart={cart} />
             <div className="home-page">
-                <ProductsGrid products={products}/>
+                <ProductsGrid products={products} loadCart={loadCart}/>
             </div>
         </>
     );

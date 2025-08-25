@@ -10,13 +10,15 @@ import axios from 'axios'
 
 function App() {
     const [cart , setCart] = useState([]);
-    useEffect(()=>{
-      const fetchAppData = async()=>{//comments for async await are in homepage.jsx
+
+    const loadCart = async()=>{//comments for async await are in homepage.jsx
         const response = await axios.get('/api/cart-items?expand=product');
         setCart(response.data);
-      };
-      fetchAppData();
-      // axios.get('/api/cart-items?expand=product')//the part from ? is called query parameter gpt for more
+    };
+    useEffect(()=>{
+     
+      loadCart();
+      // axios.get('/api/cart-items?expand=product')//the part from and onwards ? is called query parameter gpt for more
       //       .then((response)=>{
       //           setCart(response.data);//we can get data by using .data in axios   
       //       })
@@ -25,7 +27,7 @@ function App() {
   return (
     <Routes>
       <Route index /* path tells the url path of the page only a slash means url is empty which will take us to home page and index does the same thing as path="/"*/ 
-      element ={ <HomePage cart={cart}/>}//element tells react which element(page) to display
+      element ={ <HomePage cart={cart} loadCart={loadCart}/>}//element tells react which element(page) to display
       />
       <Route path="checkout" element={<CheckoutPage cart={cart}/>}/>{/* this way the html of index file is shared and now we'll juast have to create the elements and put them here it's called SPA single page application*/}
       <Route path="orders" element={<OrdersPage cart={cart}/>}/>
