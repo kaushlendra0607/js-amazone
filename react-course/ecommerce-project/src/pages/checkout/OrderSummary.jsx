@@ -4,7 +4,7 @@ import { DeliveryOptions } from "./Deliveryoptions";
 import { CartItemDetails } from "./cartItemDetails";
 import { DeliveryDate } from "./DeliveryDate";
 
-export function OrderSummary({ cart, deliveryOptions }){
+export function OrderSummary({ cart, deliveryOptions, loadCart }){
     return(
             <div className="order-summary">
             {deliveryOptions.length>0 && cart.map((cartItem)=>{
@@ -17,7 +17,7 @@ export function OrderSummary({ cart, deliveryOptions }){
                 
                 < CartItemDetails cartItem={cartItem}/>
 
-                <DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem}/>
+                <DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart={loadCart}/>
                 </div>
             </div>
                 );
