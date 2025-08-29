@@ -11,14 +11,11 @@ export function CheckoutPage({ cart, loadCart }){
     const [paymentSummary , setPaymentSummary] = useState(null);
 
     useEffect(()=>{
-        const fetchCheckoutData = async()=>{
+        const fetchDeliveryData = async()=>{
             let response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
             setDeliveryOptions(response.data);
-
-            response = await axios.get('/api/payment-summary');
-            setPaymentSummary(response.data);
         }
-        fetchCheckoutData();
+        fetchDeliveryData();
         // axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
         //     .then((response)=>{
         //         setDeliveryOptions(response.data);
@@ -27,6 +24,13 @@ export function CheckoutPage({ cart, loadCart }){
         //     .then((response)=>{
         //         setPaymentSummary(response.data);    
         //})
+    },[]);
+    useEffect(()=>{
+        const fetchPaymentData = async()=>{
+            let response = await axios.get('/api/payment-summary');
+            setPaymentSummary(response.data);
+        }
+        fetchPaymentData();
     },[cart]);
 
     return(<>
