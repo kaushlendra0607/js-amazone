@@ -6,6 +6,23 @@ import axios from "axios";
 export function CartItemDetails({ cartItem, loadCart }) {
     const [quantity,setQuantity] = useState(cartItem.quantity);
     const [isTracked,setIsTracked] = useState(false);
+    async function updateEnter(e){
+        console.log(e);
+        
+        if(isTracked){
+            if(e.key === 'Enter'){
+                await axios.put(`/api/cart-items/${cartItem.productId}`,{
+                    quantity: Number(quantity),
+                });
+                await loadCart();
+                setIsTracked(false);
+            }
+            if(e.key === 'Escape'){
+                setQuantity(cartItem.quantity);
+                setIsTracked(false);
+            }
+        }
+    }
     function inputQuantity(e){
         setQuantity(e.target.value);
     }
@@ -24,7 +41,10 @@ export function CartItemDetails({ cartItem, loadCart }) {
                     {formatMoney(cartItem.product.priceCents)}
                 </div>
                 <div className="product-quantity">
-                    <input type="text" onChange={inputQuantity} value={quantity} style={{width:'50px',display:isTracked?"inline-block":"none"}}/>
+                    <input type="text" onChange={inputQuantity} value={quantity}
+                     style={{width:'50px',display:isTracked?"inline-block":"none"}}
+                     onKeyDown={updateEnter}
+                     />
                     <span>
                         Quantity: <span className="quantity-label">{cartItem.quantity}</span>
                     </span>
