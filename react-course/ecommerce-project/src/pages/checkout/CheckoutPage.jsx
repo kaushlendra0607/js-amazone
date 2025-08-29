@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { OrderSummary } from './OrderSummary';
 import { PaymentSummary } from './paymentSummary';
+window.axios = axios;
 
 export function CheckoutPage({ cart, loadCart }){
     const [deliveryOptions, setDeliveryOptions] = useState([]);
