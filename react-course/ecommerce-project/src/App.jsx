@@ -30,7 +30,7 @@ function App() {
       element ={ <HomePage cart={cart} loadCart={loadCart}/>}//element tells react which element(page) to display
       />
       <Route path="checkout" element={<CheckoutPage cart={cart} loadCart={loadCart}/>}/>{/* this way the html of index file is shared and now we'll juast have to create the elements and put them here it's called SPA single page application*/}
-      <Route path="orders" element={<OrdersPage cart={cart}/>}/>
+      <Route path="orders" element={<OrdersPage cart={cart} loadCart={loadCart}/>}/>
       <Route path='tracking/:orderId/:productId' element={<TrackingPage cart = {cart}/>}/>
       <Route path='*' element={ <PageNotFound cart={cart} />}></Route>
     </Routes>
