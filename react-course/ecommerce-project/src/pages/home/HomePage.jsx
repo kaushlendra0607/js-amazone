@@ -6,12 +6,16 @@ import './HomePage.css';
 import { useEffect, useState } from 'react';
 // import { formatMoney } from '../../utils/money';
 import { ProductsGrid } from './ProductsGrid';
+import { useSearchParams } from 'react-router';//this hook is used for searching parameters saved in url
 
 export function HomePage({cart, loadCart}) {
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get('search');
     const [products , setProducts] = useState([]);
     useEffect(()=>{//a useEffect should return nothing or cleaner funcn meaning overall it must not return a promise but async does returns a promise thats why we created another function inside useEffect here
         const getHomeData = async ()=>{//async await lets us write code like normal unlike using then below in comments
-            const response = await axios.get("/api/products");
+            const urlPath = search ? `/api/products?search=${search}`:'/api/products'
+            const response = await axios.get(urlPath);
             setProducts(response.data);
         };
         getHomeData();
@@ -20,7 +24,7 @@ export function HomePage({cart, loadCart}) {
         //         setProducts(response.data);//but we're using axios not fetch now
         //     });
         
-    },[]) 
+    },[search]); 
     
         // .then((response)=>{
         //     return response.json();//this is also asynchronous
