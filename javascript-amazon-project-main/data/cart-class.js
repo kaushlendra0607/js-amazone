@@ -2,6 +2,7 @@
 //by usning class instead of function we get lot of more features of js
 //in classes we dont use comma for separation but can use ;
 //a class isnt exactly a function
+//some examples of builtin class are Promise and XMLHttpRequest etc
 
 class Cart {
     cartItems;//shorthand for cartItems = undefined;

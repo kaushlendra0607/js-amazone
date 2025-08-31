@@ -9,8 +9,9 @@ import { loadCart } from "../data/cart.js";
 async function loadPage(){
     try{
         // throw 'error1';
-         await loadProductsFetch();
-    const value = await new Promise((resolve,reject) => {
+         await loadProductsFetch();//Promise is a built in class
+         //promises are better way to handle asynchronous code they also allow to do multiple things at the same time
+    const value = await new Promise((resolve,reject) => {//resolve and reject are provided by promise which let us controll the flow of codes gpt for more
         // throw 'error2';
         loadCart(() => {
             // reject('error3');

@@ -9,8 +9,8 @@ describe('test suite:renderOrderSummary', () => {
 
         const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
         const productId2 = '15b6fc6f-327a-4ec4-896f-486349e85a3d';
-    beforeAll((done)=>{
-        loadProductsFetch().then(()=>{
+    beforeAll((done)=>{//beforeAll lets us run run some code before all of our tests and it provides a funcn usually called done which controlls exactly when our code finishes and we go for our tests
+        loadProductsFetch().then(()=>{//we're taking a funcn done here so that we load our code sfter loading of products
             done();
         });
     })

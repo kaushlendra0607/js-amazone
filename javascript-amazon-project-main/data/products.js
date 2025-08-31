@@ -94,9 +94,10 @@ loadProductsFetch().then(()=>{
   
 });
 */
-export function loadProducts(fun) {
+export function loadProducts(fun) {//here we are passing a function as an argument as functions are like variables in js this fun will run after the loading of products is finished
   const xhr = new XMLHttpRequest();
 
+  //here load with event listener is probably the complement of async await gpt for more
   xhr.addEventListener('load', () => {
     // console.log(xhr.response);
     products = JSON.parse(xhr.response).map((productDetails) => {
