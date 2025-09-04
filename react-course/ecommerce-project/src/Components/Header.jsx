@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate, useSearchParams } from 'react-router';//the <a> tag of html reloads by default but when we're creating ab SPA we dont need to reload For this React gives us Link Element
-import logowhite from "../assets/images/logo-white.png"
+import logowhite from "../assets/images/logo-white.png"//for router functions to work they need to be inside a route and in case of these our entire app is in browserRouter while final rendering in main jsx
 import carticon from "../assets/images/icons/cart-icon.png"
 import searchicon from "../assets/images/icons/search-icon.png"
 import './header.css'//Link element lets us go to another page without reloading
