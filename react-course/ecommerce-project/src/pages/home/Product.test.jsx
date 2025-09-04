@@ -1,4 +1,4 @@
-import { it, expect, describe, vi } from 'vitest';//in our tests we should not contact a real backend
+import { it, expect, describe, vi, beforeEach } from 'vitest';//in our tests we should not contact a real backend
 import { Product } from './Product';
 import userEvent from '@testing-library/user-event';
 //userevent lets us simulate an event like a click
@@ -8,19 +8,25 @@ import { render, screen } from '@testing-library/react';//render is used to test
 import axios from 'axios';
 vi.mock('axios');//this will mock entire axios package and our test now will use fake axios
 describe('Product Component', () => {
-    it('displays the product details correctly', () => {
-        const product = {//we'll give a sample product for testing
-            id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-            image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-            name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-            rating: {
-                stars: 4.5,
-                count: 87
-            },
-            priceCents: 1090,
-            keywords: ["socks", "sports", "apparel"]
+    let product;
+    let loadCart ;//vi helps us to mock a function since we dont want to modify original data and in case of loadcart it actually contacts to backend
+    //we should better recrate these variables before each test because any test may modify these variable's data
+    //so by using beforeEach we'll have fresh set of variables before each test
+    beforeEach(()=>{//beforeEach lets us run some code before each test it's actually a test hook
+        product = {//we'll give a sample product for testing
+        id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+        image: "images/products/athletic-cotton-socks-6-pairs.jpg",
+        name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
+        rating: {
+            stars: 4.5,
+            count: 87
+        },
+        priceCents: 1090,
+        keywords: ["socks", "sports", "apparel"]
         };
-        const loadCart = vi.fn();//vi helps us to mock a function since we dont want to modify original data and in case of loadcart it actually contacts to backend
+        loadCart = vi.fn();
+    })
+    it('displays the product details correctly', () => {
         render(<Product product={product} loadCart={loadCart} />);
         expect(
             screen.getByText("Black and Gray Athletic Cotton Socks - 6 Pairs")
@@ -44,19 +50,7 @@ describe('Product Component', () => {
         ).toBeInTheDocument();
         //now we;ve almost all theproduct details are displayed correctly
     });
-    it('adds a product into the cart', async() => {
-        const product = {//we'll give a sample product for testing
-            id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-            image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-            name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-            rating: {
-                stars: 4.5,
-                count: 87
-            },
-            priceCents: 1090,
-            keywords: ["socks", "sports", "apparel"]
-        };
-        const loadCart = vi.fn();//vi helps us to mock a function since we dont want to modify original data and in case of loadcart it actually contacts to backend
+    it('adds a product into the cart', async () => {
         render(<Product product={product} loadCart={loadCart} />);
         const user = userEvent.setup();//first we need to setup userEvent
         //the user simulations may take some time to finish so better await with them
@@ -67,8 +61,8 @@ describe('Product Component', () => {
         expect(axios.post).toHaveBeenCalledWith(
             '/api/cart-items',
             {
-                productId : "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-                quantity : 1
+                productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+                quantity: 1
             }
         );
         expect(loadCart).toHaveBeenCalled();
