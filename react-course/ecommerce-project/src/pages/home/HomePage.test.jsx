@@ -12,6 +12,7 @@ describe('HomePage Component', () => {
     let loadCart;
     beforeEach(() => {
         loadCart = vi.fn();
+        //mockImplementation means we make a mock do whatever we want
         axios.get.mockImplementation((urlPath) => {//using async this funcn will return a promise which a backend call usually does
             //here we're mocking the implementtation of get request
             if (urlPath === '/api/products') {
