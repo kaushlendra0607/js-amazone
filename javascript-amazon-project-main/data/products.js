@@ -114,6 +114,8 @@ export function loadProducts(fun) {//here we are passing a function as an argume
     fun();
   });
 
+  //we setup a separate callback just for errors
+  //error is an event in itself
   xhr.addEventListener('error',()=>{
     console.log('Unexpected error.');
     

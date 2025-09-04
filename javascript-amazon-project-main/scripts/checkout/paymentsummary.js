@@ -56,19 +56,22 @@ export function renderPaymentSummary() {
     try {
       const response = await fetch('https://supersimplebackend.dev/orders', {
         method: 'POST',
-        headers: {
+        headers: {//header gives the backend more info about our request
           'Content-Type': 'application/json'
-        },
+        },//actual data which is to be sent to backend is inside body
+        //we cant send an object directly to the backend we need to stringify it
         body: JSON.stringify({
           cart: cart
         })
       });
+      //json is also a promise so we have to wait to finish and we can also save it in a variable
       const order = await response.json();
       addOrder(order);
     } catch (error) {
         console.log('Unexpected Error');
         
     }
+    //this line(below) will change the url of the page gpt for more accurate info
     window.location.href = 'orders.html';
 
   });

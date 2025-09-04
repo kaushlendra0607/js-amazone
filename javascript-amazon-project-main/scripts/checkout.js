@@ -6,6 +6,14 @@ import { loadCart } from "../data/cart.js";
 // import '../data/cart-class.js';
 // import '../data/backend-practice.js';
 
+//async makes a function return a promise and it lets us use await
+//await waits for a promise to finish or simply it lets us run asynch code like normal code without using then
+//we can only use await when we're inside async and the closest funcn shold be async
+//try catch is very usefull it can be used with asynch or normal code as well
+//but try ctach is meant to controll unexpected errors which means our code is correct and error is outside our controll
+//when an error occurs inside try it skips rest of code below the line where error occured and goes to catch straight
+//we can manually create errors using throw which will be caught by catch
+//reject is another way to create error in promises and it creates errors in future like when backend is gonna load etc gpt for more
 async function loadPage(){
     try{
         // throw 'error1';
