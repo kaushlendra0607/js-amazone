@@ -72,8 +72,12 @@ console.log(date.toLocaleString());
 export let products = [];
 
 export function loadProductsFetch(){
+  //when we call fetch it creates a promise and we give next step using then
+  //it is actually asynch code but then handles it efficiently for us
+  //after a promise is returned then it goes oo the next step
+  //here we dont need a callback like fun in loadproducts instead we can save this entire promise in a variable and use it again
   const promise = fetch('https://supersimplebackend.dev/products').then((response)=>{
-   return response.json();
+   return response.json();//we're returning a promise here and when response.jason finishes it will give us the products data
   }).then((productsData)=>{
      products =productsData.map((productDetails) => {
       if (productDetails.type === 'clothing') {
