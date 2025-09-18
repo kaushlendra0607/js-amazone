@@ -3,6 +3,19 @@
 //in classes we dont use comma for separation but can use ;
 //a class isnt exactly a function
 //some examples of builtin class are Promise and XMLHttpRequest etc
+//When do you need a constructor?
+//1.You want to accept arguments when creating an object.As below:
+//class User {
+//   constructor(name, age) {
+//     this.name = name;
+//     this.age = age;
+//   }
+// }
+// const u = new User("Alice", 21);
+// console.log(u); // { name: "Alice", age: 21 }
+//2.You want to initialize extra properties when the object is created.
+//You’re extending another class and need to call super() to use the parent’s constructor.
+//If it’s just a utility class (only methods, no stored data) → you can skip it.
 
 class Cart {
     cartItems;//shorthand for cartItems = undefined;
