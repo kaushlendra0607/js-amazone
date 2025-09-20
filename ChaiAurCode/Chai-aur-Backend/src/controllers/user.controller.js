@@ -22,7 +22,7 @@ const registerUser = asyncHandler(async(req,res)=>{
     ){
         throw new ApiError(400,"All fields are required!");
     }
-    const existedUser = User.findOne({$or:[email,username]});
+    const existedUser = await User.findOne({$or:[{email},{username}]});
     if(existedUser){//cheking if user already exists
         throw new ApiError(409,"User already exists");
     }
@@ -31,7 +31,12 @@ const registerUser = asyncHandler(async(req,res)=>{
     //we're using ? to check if the object has been provided or not
     //if its provided well and good if its not the it wont throw additional error
 
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    // const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    console.log("files is ",req.files," path is",avatarLocalPath);
+    let coverImageLocalPath;
+    if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length>0){
+        coverImageLocalPath = req.files.coverImage[0].path;
+    }
     if(!avatarLocalPath){//checking for images/avatar
         throw new ApiError(400,"Avatar is required!");
     }
@@ -41,7 +46,7 @@ const registerUser = asyncHandler(async(req,res)=>{
         throw new ApiError(400,"Avatar is required!");
     }
     //create takes an object which contains which fields to create
-    const user = await User.create({//now we r entering in database and creating fields
+    const userDoc = await User.create({//now we r entering in database and creating fields
         fullName,
         avatar:avatar.url,
         coverimage:coverImage?.url || "",
@@ -49,7 +54,7 @@ const registerUser = asyncHandler(async(req,res)=>{
         password,
         username:username.toLowerCase()
     });
-    const createdUser = await user.findById(user._id).select("-password -refreshToken");
+    const createdUser = await User.findById(userDoc._id).select("-password -refreshToken");
 
     if(!createdUser){//now we'll check if user is actually created or not.
         throw new ApiError(500,"Something went wrong while registering the user!");

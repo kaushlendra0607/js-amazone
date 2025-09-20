@@ -36,6 +36,7 @@ const userSchema = new Schema({
         ref:"Video"}
     ],
     password:{
+        type:String,
         required:[true,"Password is required"],//this is a way to pass some custom message.
     },
     refreshToken:{

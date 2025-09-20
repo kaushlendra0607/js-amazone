@@ -7,7 +7,7 @@ import fs from "fs";//fs is File System module in Node.js.
 cloudinary.config({
     cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
     api_key:process.env.CLOUDINARY_API_KEY,
-    api_secret:CLOUDINARY_API_SECRET
+    api_secret:process.env.CLOUDINARY_API_SECRET
 })
 
 const uploadOnCloudinary = async (localFilePath)=>{
@@ -17,6 +17,8 @@ const uploadOnCloudinary = async (localFilePath)=>{
         const response = await cloudinary.uploader.upload(localFilePath,{
             resource_type:"auto"
         });
+        fs.unlinkSync(localFilePath);
+        return response;
         console.log("File has been uploaded",response.url);
     } catch (error) {
         fs.unlinkSync(localFilePath);//removes the temporary file as the upload operation got failed
