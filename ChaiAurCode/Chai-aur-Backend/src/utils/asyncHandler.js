@@ -1,6 +1,6 @@
 // we're creating an async wrapper so that we can use it in multiple files
 const asyncHandler = (requestHandler)=>{
-    (req,res,next)=>{
+    return (req,res,next)=>{
         Promise.resolve(requestHandler(req,res,next))//do gpt for more for this code
         .catch((err)=>next(err));
     }
