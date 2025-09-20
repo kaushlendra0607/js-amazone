@@ -51,7 +51,7 @@ const userSchema = new Schema({
 //and next is used to pass the flag to main operations after completing middleware operations
 userSchema.pre("save",async function(next){
     if(!this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password,10);//we'll use hash methid from bcrypt and it takes two arguments one is what to encrypt and another one is hash round maybe which usually means salting rounds
+    this.password = await bcrypt.hash(this.password,10);//we'll use hash methid from bcrypt and it takes two arguments one is what to encrypt and another one is hash round maybe which usually means salting rounds
     next();
 });
 //we can create costum methods using built in method methods
