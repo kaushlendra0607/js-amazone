@@ -3,7 +3,6 @@ import {ApiError} from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { useId } from "react";
 
 const generateAccessAndRefreshTokens = async (userId)=>{
     try {
@@ -102,7 +101,7 @@ const loginUser = asyncHandler(async(req,res)=>{
     //access and refresh token
     //send cookie
 
-    const [username,email,passowrd] = req.body;
+    const {username,email,password} = req.body;
     if(!username && !email){
         throw new ApiError(400,"Atleast username or email is required!");
     }
@@ -111,7 +110,7 @@ const loginUser = asyncHandler(async(req,res)=>{
     if(!userDoc){
         throw new ApiError(404,"User does not exists.");
     }
-    const isPasswordValid = await userDoc.isPasswordCorrect(passowrd);
+    const isPasswordValid = await userDoc.isPasswordCorrect(password);
     //NOTE- the methods like findOne etc can be accessed through object created by library classes itself like mongoose
     //here we have User object which we created by mongoose and imported from model
     //but our own made methods like isPasswordCorrect can be accessed through object created by us which is userDoc
@@ -128,7 +127,7 @@ const loginUser = asyncHandler(async(req,res)=>{
         secure:true
     }
     //finally we're sending response
-    return res.status(200).cookie("accesstoken",accessToken,options)
+    return res.status(200).cookie("accessToken",accessToken,options)
             .cookie("refreshToken",refreshToken,options)
             .json(
                 new ApiResponse(

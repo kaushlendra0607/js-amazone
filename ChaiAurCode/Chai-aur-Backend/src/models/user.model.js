@@ -52,12 +52,20 @@ const userSchema = new Schema({
 //and next is used to pass the flag to main operations after completing middleware operations
 userSchema.pre("save",async function(next){
     if(!this.isModified("password")) return next();
+    // console.log(this.password);
+    
     this.password = await bcrypt.hash(this.password,10);//we'll use hash methid from bcrypt and it takes two arguments one is what to encrypt and another one is hash round maybe which usually means salting rounds
     next();
 });
 //we can create costum methods using built in method methods
 
 userSchema.methods.isPasswordCorrect = async function(password){
+    // console.log("plain password",password);
+    // console.log("hashed password",this.password);
+    
+    //this refers to the document instance created by schema
+    //like when we use this method we are doing something like user.isPasswordCorrect
+    //this refers to user
     return await bcrypt.compare(password,this.password);//compare returns true or false
     //bcrypt has a method called caompare which takes the plain pass first and then encrypted pass then it compares both
 }
