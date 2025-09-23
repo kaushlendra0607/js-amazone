@@ -6,6 +6,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 // import { verifyJWT } from "../middlewares/auth.middleware.js";
 import jwt from "jsonwebtoken";
 import mongoose, { Types } from "mongoose";
+import fs from "fs";
 
 const generateAccessAndRefreshTokens = async (userId)=>{
     try {
@@ -216,7 +217,7 @@ const getCurrentUser = asyncHandler(async(req,res)=>{
 //we r able to return user object from req bcz we created this object inside user in auth middleware
 });
 
-const updateAccountCredentials = asyncHandler(async(req,res)=>{
+const updateAccountDetails = asyncHandler(async(req,res)=>{
     const {fullName,email} = req.body;
     if(!fullName || !email){
         throw new ApiError(400,"Allfields are required");
@@ -254,7 +255,7 @@ const updateUserAvatar = asyncHandler(async(req,res)=>{
         },
         {new:true}
     );
-    //todo : delete user's old avatar from cloud
+    fs.unlinkSync(avatarLocalPath);
     return res.status(200)
     .json(new ApiResponse(200,userDoc,"Avatar updated successfully"));
 });
@@ -277,6 +278,7 @@ const updateUserCoverImage = asyncHandler(async(req,res)=>{
         },
         {new:true}
     );
+    fs.unlinkSync(coverImageLocalPath);
     return res.status(200)
     .json(new ApiResponse(200,userDoc,"Cover image updated successfully."));
 });
@@ -449,7 +451,7 @@ export {
     refreshAccessToken,
     changeCurrentPassword,
     getCurrentUser,
-    updateAccountCredentials,
+    updateAccountDetails,
     updateUserAvatar,
     updateUserCoverImage,
     getUserChannelProfile,
