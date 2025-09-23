@@ -5,7 +5,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 // import { verifyJWT } from "../middlewares/auth.middleware.js";
 import jwt from "jsonwebtoken";
-import { isObjectIdOrHexString } from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 const generateAccessAndRefreshTokens = async (userId)=>{
     try {
@@ -369,6 +369,79 @@ const getUserChannelProfile = asyncHandler(async()=>{
     .json(new ApiResponse(200,channel[0],"User channel fetched successfully!"));
 });
 
+const getWatchHistory = asyncHandler(async(req,res)=>{
+    const userDoc = await User.aggregate([
+        {
+            $match:{
+                _id : new mongoose.Types.ObjectId(req.user._id)//dont worry about line through Objectid
+            }
+        },
+        {
+            $lookup:{
+                from:"videos",//mongoose makes the collection names small case and pluralises it
+                //when passing a field name it must be same exactly no pluralising or lower casing additionally
+                //Rule of thumb
+                //Collections → pluralized, lowercase (by Mongoose).
+                //Fields → case-sensitive, exactly what you define.
+                // and we sometimes have to put $ before it as in above pipelines
+                localField:"watchHistory",
+                foreignField:"_id",
+                as:"watchHistory",
+                pipeline:[ // pipeline here means: after we fetch matching 'videos',
+                            // we can run another mini-aggregation pipeline on those video docs
+                    {
+                        $lookup:{// join each video with its owner (User model)
+                            from:"users", // collection to join with (Mongoose pluralizes -> "users")
+                            localField:"owner",// field in Video schema (ObjectId referencing a User)
+                            foreignField:"_id", // match it with the User's _id
+                            as:"owner",// name of new field (will be an array of matched user docs)
+                            pipeline:[// now we can process/filter the joined owner docs further
+                                {
+                                    $project:{// project = include only selected fields from owner
+                                        fullName:1,
+                                        avatar:1,
+                                        username:1
+                                    } // rest of the fields are excluded by default
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        $addFields:{
+                            owner:{// we are redefining the 'owner' field
+                                $first:"$owner"
+                            // $first takes the first element from the 'owner' array 
+                            // (since $lookup always returns an array, even if only one match)
+                            // this converts owner:[{...}] into owner:{...}
+                            }
+                        }
+                    }
+                ]
+            }
+            /* userDoc will now contain:
+
+            The user document being aggregated.
+
+            Its watchHistory array.
+
+            Inside each watchHistory item (video), you’ll have an owner object with only:
+
+                fullName
+
+                avatar
+
+                username */
+        }
+        /* End result:
+        userDoc → has watchHistory array.
+        Each item in watchHistory → is a Video document.
+        Each video has owner array → containing only { fullName, avatar, username }. */
+    ]);
+
+    return res.status(200)
+    .json(new ApiResponse(200,userDoc[0].watchHistory,"Watch history fetched successfully."));
+});
+
 export {
     registerUser,
     loginUser,
@@ -379,5 +452,6 @@ export {
     updateAccountCredentials,
     updateUserAvatar,
     updateUserCoverImage,
-    getUserChannelProfile
+    getUserChannelProfile,
+    getWatchHistory
 }
