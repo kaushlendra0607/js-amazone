@@ -76,6 +76,7 @@ const registerUser = asyncHandler(async(req,res)=>{
         username:username.toLowerCase()
     });
     const createdUser = await User.findById(userDoc._id).select("-password -refreshToken");
+    fs.unlinkSync(avatarLocalPath);
 
     if(!createdUser){//now we'll check if user is actually created or not.
         throw new ApiError(500,"Something went wrong while registering the user!");
@@ -151,6 +152,8 @@ const logOutUser = asyncHandler(async(req,res)=>{
         req.user._id,
         {
             $set:{ refreshToken : undefined }
+            //better to use unset here instead of set
+            //set sets the refreshToken to undefined but unset will unset the refreshToken field, do gpt for exact context
         },
         {
             new:true
