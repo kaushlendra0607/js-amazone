@@ -27,19 +27,11 @@ section {
     /* height: 100vh; */
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6 {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-p,
-li,
-a,
-label {
+p,li,a,label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.8rem;
     letter-spacing: .1rem;
@@ -173,9 +165,6 @@ li {
     /* width: 100%; */
     transform: scaleX(1);
 }
-
-/*  */
-
 
 .main {
     background-image: linear-gradient(to top right,
