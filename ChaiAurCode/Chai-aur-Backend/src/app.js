@@ -10,8 +10,11 @@ app.use(cors({
 }));
 
 app.use(express.json({limit:'16kb'}));// do gpt for more
-app.use(express.urlencoded({extended:true,limit:'16kb'}));//some special characters like @ cause trouble in urls so we use encoders for them
-app.use(express.static("public"));//just tells about data which is public gpt for more
+app.use(express.urlencoded({extended:true,limit:'16kb'}));
+//In short: extended: true allows you to post "nested" objects.
+//used for parsing HTML form submissions (URL-encoded data).
+app.use(express.static("public"));
+//This tells Express to serve static files (like HTML, CSS, JS, images) from a specific folder — here, "public".
 app.use(cookieParser());
 
 //routes import
