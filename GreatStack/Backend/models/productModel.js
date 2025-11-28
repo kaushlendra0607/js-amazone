@@ -12,7 +12,7 @@ const productSchema = new mongoose.Schema({
     date: { type: Number, requied: true }
 });
 
-const productModel = mongoose.models.product || mongoose.model("product",productSchema);
+const productModel = mongoose.models.product || mongoose.model("product", productSchema);
 //if product model already exists then that will be used or it will be created.
 
 export default productModel;
