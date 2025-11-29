@@ -1,11 +1,12 @@
 import express from 'express';
 import { addProduct,listProduct,removeProduct,singleProductInfo } from '../controllers/productController.js';
 import upload from '../middlewares/multer.js';
+import adminAuth from '../middlewares/adminAuth.js';
 
 
 const productRouter = express.Router();
 
-productRouter.post('/add',upload.fields([
+productRouter.post('/add',adminAuth,upload.fields([
     {name:'image1',maxCount:1},
     {name:'image2',maxCount:1},
     {name:'image3',maxCount:1},
@@ -16,7 +17,7 @@ productRouter.post('/add',upload.fields([
     //array => multiple files with same field name
     //any => anything with any name
 productRouter.get('/list',listProduct);
-productRouter.post('/remove',removeProduct);
+productRouter.post('/remove',adminAuth,removeProduct);
 productRouter.post('/info',singleProductInfo);
 
 export default productRouter;
