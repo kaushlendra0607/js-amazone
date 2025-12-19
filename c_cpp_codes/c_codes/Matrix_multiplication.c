@@ -4,5 +4,5 @@
 int main(){
     int i,j,k,a[N][N],b[N][N],c[N][N];
     clrscr();
-    printf("Enetr first mat")
+    printf("Enetr first mat");
 }
