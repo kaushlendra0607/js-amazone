@@ -1,0 +1,52 @@
+{
+  "P001": {
+    "name": "John Doe",
+    "dob": "1985-06-15",
+    "gender": "Male",
+    "height": 180,
+    "wt": 85,
+    "bmi": 26.23,
+    "city": "New York",
+    "age": 40
+  },
+  "P002": {
+    "name": "Jane Smith",
+    "dob": "1992-11-23",
+    "gender": "Female",
+    "height": 165,
+    "wt": 60,
+    "bmi": 22.04,
+    "city": "London",
+    "age": 33
+  },
+  "P003": {
+    "name": "Michael Brown",
+    "dob": "1978-03-12",
+    "gender": "Male",
+    "height": 175,
+    "wt": 90,
+    "bmi": 29.39,
+    "city": "Toronto",
+    "age": 47
+  },
+  "P004": {
+    "name": "Emily Davis",
+    "dob": "2000-08-30",
+    "gender": "Female",
+    "height": 170,
+    "wt": 58,
+    "bmi": 20.07,
+    "city": "Sydney",
+    "age": 25
+  },
+  "P005": {
+    "name": "Robert Wilson",
+    "dob": "1965-01-20",
+    "gender": "Male",
+    "height": 182,
+    "wt": 95,
+    "bmi": 28.68,
+    "city": "Chicago",
+    "age": 61
+  }
+}
